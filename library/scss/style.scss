@@ -1,0 +1,464 @@
+@import "normalize";
+@import "fonts";
+
+@import "settings";
+@import "foundation/components/global";
+@import "foundation/components/grid";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+
+@import "mixins";
+
+* { @include box-sizing(border-box); }
+
+
+html {
+	background: #222;
+}
+
+body {
+	color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #202020;
+	text-decoration: none;
+	&:hover {
+		color: #383838;
+		text-decoration: underline;
+	}
+	&:visited {
+		color: #201C1C;
+	}
+}
+
+#header-container {
+	color: #fff;
+}
+
+#galaxy {
+	background-color: #e5e5e5;
+}
+
+/* === Mobile Layout === */
+// #content-container {
+// 	background-color: #ff0000;
+// }
+
+.identity {
+	@include grid-column($columns: 12);
+}
+
+#primary-menu {
+	@include grid-column(12);
+}
+
+.hero-wrapper, .villain-wrapper {
+	@include grid-row();
+}
+
+.content-wrapper {
+	@include grid-row();
+}
+
+.single-episode .episode {
+	@include grid-column(12);
+}
+
+.single-episode {
+
+	.episode,
+	.sidebar,
+	.hero-meta,
+	.hero-album-art {
+		@include grid-column(12);
+	}
+
+}
+
+
+/* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
+@media #{$small} {
+
+	.header-wrapper {
+		@include grid-row();
+	}
+
+	.identity {
+		@include grid-column(5);
+	}
+
+	#primary-menu {
+		@include grid-column(7);
+	}
+
+	.hero-wrapper, .villain-wrapper {
+		@include grid-row();
+	}
+
+	.content-wrapper {
+		@include grid-row();
+	}
+
+	.single-episode {
+
+		.episode {@include grid-column(8);}
+		.sidebar {@include grid-column(4);}
+		.hero-meta {@include grid-column(7);}
+		.hero-album-art {@include grid-column(5);}
+
+
+	}
+
+}
+
+/*
+======================================================
+	Header / Identity / Primary Menu 
+======================================================
+*/
+
+#header-container {
+	border-bottom: 1px solid #222;
+	padding-bottom: 10px;
+	// box-shadow: inset 0 -5px 10px 1px rgba(200,200,200,.2); // dark
+	box-shadow: inset -5px -5px 10px 1px rgba(255, 255, 255, 0.2); // light
+	overflow: hidden;
+}
+.header-wrapper {
+	padding-top: 10px;
+}
+
+/* === site title === */
+
+#site-title, #site-description {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 36px;
+  line-height: 22px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  margin: 0;
+  padding: 0;
+}
+
+#site-title {
+
+  font-size: 62px;
+  line-height: 40px;
+  font-family: 'LeagueGothicRegular', Helvetica, Arial, san-serif;
+  font-weight: normal;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:after {
+    content: "";
+    font-size: 16px;
+    top: -2.1em;
+    position: relative;
+    line-height: 0px;
+    font-weight: normal;
+    text-transform: lowercase;
+  }
+
+}
+
+.small-identity {
+	#site-title {
+		font-size: 48px;
+	}
+	#site-logo {
+		top: -1px;
+		.logo {
+			width: 40px;
+			height: 40px;
+			background-size: 40px 40px;
+		}
+	}
+	#site-description {
+		display: none;
+	}
+	#primary-menu {
+		margin-top: 9px;
+	}
+}
+
+#site-description {
+  margin-top: 2px;
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: normal;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+#site-logo {
+  float: left;
+  position: relative;
+  top: -5px;
+  padding-right: 10px;
+  
+
+  .logo {
+    width: 64px;
+    height: 64px;
+    background-size: 64px 64px;
+    background-image: url('../images/nx-logo-grayscale.png');
+    display: block;
+  }
+
+}
+
+#header-container:hover {
+  #site-logo .logo {
+    background-image: url('../images/nx-logo-color.png');
+  }
+}
+
+@-webkit-keyframes logo-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+#site-logo.idle {
+  .logo {
+    -webkit-transform: scale(.9);
+  }
+  -webkit-animation-name:             logo-rotate; 
+  -webkit-animation-duration:         30s; 
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function:  linear;
+}
+
+#primary-menu {
+	
+	font-size: emCalc(13px);
+	text-align: right;
+	margin-top: 13px; // align the menu with the middle of the nexus letters
+
+	a {
+		color: #bbb;
+		text-decoration: none;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+	}
+	a:hover {
+		color: #fff;
+		text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	li {
+		text-transform: uppercase;
+		display: inline;
+		margin-left: 15px;
+		letter-spacing: 1px;
+	}
+
+
+}
+
+/*
+======================================================
+	Villain / Hero
+======================================================
+*/
+
+#content-container {
+	padding: 1em 0 2em 0;
+}
+
+#villain-container, #hero-container {
+	// overflow: hidden;
+}
+
+#villain-container {
+	color: #999999;
+}
+
+#hero-container {
+	// background: #e5e5e5;
+	background: #f5f5f5;
+	padding: 20px 0 20px 0;
+	box-shadow: 0px 1px 10px rgba(50, 50, 50, 0.15);
+}
+
+.hero-meta {
+	font-family: 'Open Sans', sans-serif;
+	text-shadow: 0 1px 1px #ddd;
+	font-size: 16px;
+	margin-top: 10px;
+	line-height: 26px;
+	@include grid-column($columns:7);
+}
+
+.hero-art {
+	@include grid-column($columns:5);
+}
+
+
+/*
+======================================================
+	Episode Content
+======================================================
+*/
+
+.show-number, .show-date {
+	text-shadow: 1px 2px 2px white;
+}
+
+.show-series-name,
+.show-title {
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.hero-meta .show-series-name {
+	font-size: 2.2em;
+}
+
+.show-series-description {
+	.long {
+		font-size: 14px;
+		line-height: 22px;
+	}
+	.short {
+		font-size: 18px;
+		line-height: 28px;
+	}
+}
+
+// general non-class based styles go here
+.single-episode .episode {
+
+	font-size: 13px;
+
+	ul {
+		list-style-type: square;
+		margin: 5px 0 10px 0;
+		padding-left: 20px;
+		padding-right: 10px;
+	}
+
+	li {
+		margin-bottom: 2px;
+	}
+
+
+}
+
+.single-episode {
+	
+	.content-header {
+		margin-bottom: 1em;
+	}
+
+	.content-section {
+		&:before {
+			content: ' ';
+			width: 100%;
+			margin: auto;
+			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
+			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
+			height: 1px;
+			display: block;
+			margin: 15px auto 15px auto;
+		}
+	}
+
+	.show-title {
+		font-size: 2.2em;
+		
+	}
+
+	.show-number, .show-date {
+		font-size: 13px;
+		display: inline;
+		color: #555;
+	}
+
+	.show-description {
+
+		margin: 10px 0 10px 0;
+		padding: 10px 15px 10px 15px;
+		-webkit-border-radius: 0 0 2px 2px;
+		border-radius: 0 0 2px 2px;
+
+		line-height: 1.6em;
+		font-size: 1.1em;
+
+		background-color: #f6f6f6;
+		color: #444;
+		border-top: 1px solid rgba(0,0,0,.05);
+		border-bottom: 1px solid rgba(0,0,0,.09);
+	}
+
+
+	.episode .box {
+		@include box(.20);
+		padding: 0; // turn off the padding from the box
+	}
+
+	.show-title,
+	.show-meta {
+		padding: 0px 10px 0 10px;
+	}
+	.show-title {
+		padding: 10px 10px 0 10px;
+	}
+	.content-section {
+		padding: 0px 10px 0 15px;
+	}
+	.content-footer {
+		padding: 0 10px 10px 10px;
+	}
+
+	.sidebar .box {
+		@include box();
+	}
+
+	.hero-album-art img {
+		display: block;
+		margin: auto;
+		@include box-shadow(1px 2px 20px rgba(0, 0, 0, 0.85));
+		border: 6px solid #fff;
+		border-radius: 2px;
+	}
+
+}
+
+.show-file {
+	margin-bottom: 10px;
+}
+
+.download-meta {
+	font-size: 11px;
+	padding: 2px 15px 0 15px;
+	color: #444;
+
+	.show-download {
+		display: block;
+		float: right;
+	}
+
+}
+
+// mejs-container fix
+.mejs-container, .mejs-container * {
+	@include box-sizing(content-box);
+}
