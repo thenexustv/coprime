@@ -42,6 +42,14 @@
 									
 									<?php
 										$query = Coprime::get_instance()->get_person_episodes($person->get_id());
+										
+										// save the global wp_query; restore it after
+										// this will allow pagination to work
+										global $wp_query;
+										$_wp_query = $wp_query;
+										$wp_query = $query;
+										
+
 										if ( $query->have_posts() ):
 									?>
 									<h3 class="episodes-with">Episodes with <?php echo $cp_person->get_name(); ?></h3>
@@ -52,8 +60,8 @@
 										<li><a href="<?php echo $episode->get_permalink(); ?>"><?php echo $episode->get_formatted_title(); ?></a></li>
 									<?php endwhile ?>
 									</ul>
-									<?php get_template_part('partials/loop-pagination'); ?>
-									<?php endif; wp_reset_query(); wp_reset_postdata(); ?>
+									<?php loop_pagination(); //get_template_part('partials/loop-pagination'); ?>
+									<?php endif; $wp_query = $_wp_query; wp_reset_query(); wp_reset_postdata(); ?>
 								</div>
 
 								<?php do_action('in_content_section'); ?>
