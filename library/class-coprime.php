@@ -6,8 +6,6 @@ class Coprime {
 
 	private function __construct() {
 
-		add_theme_support( 'post-thumbnails', array('episode'));   
-
 		add_theme_support('menus');
 		$this->register_menus();
 
@@ -17,10 +15,35 @@ class Coprime {
 
 		add_filter('body_class', array($this, 'add_body_classes'));
 
+		add_action('pre_get_posts', array($this, 'adjust_person_archives'));
+
+	}
+
+	public function adjust_person_archives($query) {
+		if ( $query->is_post_type_archive('person') && !is_admin() ) {
+
+			$query->set('posts_per_page', 12);
+			$query->set('orderby', 'title');
+			$query->set('order', 'ASC');
+			$query->set('meta_key', 'confluence-person-host');
+
+			add_filter('posts_orderby', array($this, 'adjust_person_archives_orderby'));
+		}
+
+		return $query;
+	}
+
+	public function adjust_person_archives_orderby($orderby) {
+		global $wpdb;
+		$orderby = $wpdb->postmeta . '.meta_value DESC, ' . $orderby;
+
+		remove_filter('posts_orderby', array($this, 'adjust_person_archives_orderby'));
+
+		return $orderby;
 	}
 
 	public function enqueue_styles() {
-		wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Exo:400,700|Montserrat|Open+Sans:400,700');
+		wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700');
 		wp_register_style('coprime', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
 
 		wp_enqueue_style('open-sans');
@@ -85,6 +108,55 @@ class Coprime {
 	    );
 	    $query = new WP_Query($arguments);
 	    return $query;
+	}
+
+	public function get_person_episodes($post_id) {
+		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		$arguments = array(
+			'post_type' => 'episode',
+			'posts_per_page' => 20,
+			'paged' => $paged,
+			'meta_value' => $post_id
+		);
+		$query = new WP_Query($arguments);
+		return $query;
+	}
+
+	public function get_shows_query() {
+
+		$post_ids = $this->get_show_query_data();
+		var_dump($post_ids);
+		$arguments = array(
+			'post_type' => 'episode',
+			'post__in ' => $post_ids,
+			'posts_per_page' => count($post_ids),
+		);
+		$query = new WP_Query($arguments);
+		return $query;
+
+	}
+
+	public function get_category_guide_query() {
+		$arguments = array(
+			'orderby' => 'name',
+			'hide_empty' => 1,
+		);
+		$categories = get_categories($arguments);
+		$post_ids = array(); // store a list of IDs that represent the latest from each category
+		$query = new WP_Query();
+		foreach ($categories as $category) {
+			if ( in_array(strtolower($category->cat_name), array('uncategorized')) ) continue;
+			$query->query(array(
+				'post_type' => 'episode',
+				'posts_per_page' => 1,
+				'cat' => $category->term_id
+			));
+			$query->the_post();
+			$id = get_the_ID(); // this is awful
+			if ( is_numeric($id) ) $post_ids[] = $id;
+		}
+		wp_reset_postdata();
+		return $post_ids;
 	}
 
 	private function exclude_fringe($arguments = array()) {

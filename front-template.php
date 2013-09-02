@@ -34,23 +34,40 @@
                     
                     <?php do_action('before_content'); ?>
 
+                    <?php if ( have_posts() ): while ( have_posts() ): the_post();
+                        if ( strlen(get_the_content()) > 0 ):
+                    ?>
+                    <div id="noticeboard">
+                        <?php the_content(); ?>
+                    </div>
+                    <?php endif; endwhile; endif; ?>
+
                     <div id="showboard">
 
-                    <?php
-                        $topshelf_query = Coprime::get_instance()->get_showboard_primary_query($villain_episodes);
-                        while ($topshelf_query->have_posts()): $topshelf_query->the_post();
-                        get_template_part('partials/showboard');
-                        endwhile;
-                    ?>
+                        <div class="top">
+                        <?php
+                            $topshelf_query = Coprime::get_instance()->get_showboard_primary_query($villain_episodes);
+                            while ($topshelf_query->have_posts()): $topshelf_query->the_post();
+                            get_template_part('partials/showboard');
+                            endwhile;
+                        ?>
+                        </div>
 
-                    <hr />
+                        <!-- <hr /> -->
 
-                    <?php
-                        $bottom_query = Coprime::get_instance()->get_showboard_fringe_query();
-                        while ($bottom_query->have_posts()): $bottom_query->the_post();
-                        get_template_part('partials/showboard');
-                        endwhile;
-                    ?>
+                        <div class="bottom">
+                        <?php
+                            $bottom_query = Coprime::get_instance()->get_showboard_fringe_query();
+                            while ($bottom_query->have_posts()): $bottom_query->the_post();
+                            get_template_part('partials/showboard');
+                            endwhile;
+                        ?>
+                        </div>
+
+                        <div class="baseline">
+                            <h3 class="all-shows"><a href="<?php echo site_url('/shows/'); ?>">&larr; All Shows</a></h3>
+                            <h3 class="more-episodes"><a href="<?php echo site_url('/episode/'); ?>">More Episodes &rarr;</a></h3>
+                        </div>
 
                     </div>
 
