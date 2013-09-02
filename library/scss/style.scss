@@ -736,11 +736,12 @@ a {
 	Loop Pagination
 ======================================================
 */
-
+.archive .loop-pagination {
+	@include box;
+}
 .loop-pagination {
 	margin-top: 3em;
 	text-align: center;
-	@include box;
 
 	.page-numbers {
 		padding: 0 1em 0 1em;
@@ -782,6 +783,9 @@ a {
 
 .page #content-container {
 	padding-top: 2em;
+}
+.page.page-template-default .content-wrapper {
+	@include box;
 }
 .series-status {
 	margin-top: 0px;
