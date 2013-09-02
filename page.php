@@ -1,17 +1,5 @@
 <?php get_header(); ?>
 
-		<?php do_action('before_hero'); // better name for this hook, please? ?>
-
-		<section id="hero-container">
-			<div class="hero-wrapper">
-				
-				<?php do_action('in_hero'); // better name for this hook, please? ?>
-
-			</div>
-		</section>
-
-		<?php do_action('after_hero'); // better name for this hook, please? ?>
-
 		<?php do_action('before_world'); ?>
 
 		<section id="world">
@@ -27,12 +15,11 @@
 						<?php do_action('before_in_content'); ?>
 
 						<header class="content-header">
-							<h2><?php the_title(); ?></h2>
-							<!-- stuff -->
+							<h1><?php the_title(); ?></h1>
 							<?php do_action('in_content_header'); ?>
 						</header>
 						<section class="content-section">
-							<!-- content goes here -->
+							<?php the_content(); ?>
 							<?php do_action('in_content_section'); ?>
 						</section>
 						<footer class="content-footer">

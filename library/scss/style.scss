@@ -37,85 +37,17 @@ a {
 	}
 }
 
-#header-container {
-	color: #fff;
-}
-
 #galaxy {
 	background-color: #e5e5e5;
 }
 
-/* === Mobile Layout === */
-// #content-container {
-// 	background-color: #ff0000;
-// }
+/*
+======================================================
+	Import Layout 
+======================================================
+*/
 
-.identity {
-	@include grid-column($columns: 12);
-}
-
-#primary-menu {
-	@include grid-column(12);
-}
-
-.hero-wrapper, .villain-wrapper {
-	@include grid-row();
-}
-
-.content-wrapper {
-	@include grid-row();
-}
-
-.single-episode .episode {
-	@include grid-column(12);
-}
-
-.single-episode {
-
-	.episode,
-	.sidebar,
-	.hero-meta,
-	.hero-album-art {
-		@include grid-column(12);
-	}
-
-}
-
-
-/* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
-@media #{$small} {
-
-	.header-wrapper {
-		@include grid-row();
-	}
-
-	.identity {
-		@include grid-column(5);
-	}
-
-	#primary-menu {
-		@include grid-column(7);
-	}
-
-	.hero-wrapper, .villain-wrapper {
-		@include grid-row();
-	}
-
-	.content-wrapper {
-		@include grid-row();
-	}
-
-	.single-episode {
-
-		.episode {@include grid-column(8);}
-		.sidebar {@include grid-column(4);}
-		.hero-meta {@include grid-column(7);}
-		.hero-album-art {@include grid-column(5);}
-
-
-	}
-
-}
+@import "_layout.scss";
 
 /*
 ======================================================
@@ -124,10 +56,11 @@ a {
 */
 
 #header-container {
+	color: #fff;
 	border-bottom: 1px solid #222;
 	padding-bottom: 10px;
 	// box-shadow: inset 0 -5px 10px 1px rgba(200,200,200,.2); // dark
-	box-shadow: inset -5px -5px 10px 1px rgba(255, 255, 255, 0.2); // light
+	// box-shadow: inset -5px -5px 10px 1px rgba(255, 255, 255, 0.2); // light
 	overflow: hidden;
 }
 .header-wrapper {
@@ -148,7 +81,7 @@ a {
 }
 
 #site-title {
-
+  // border: 1px solid #f00;
   font-size: 62px;
   line-height: 40px;
   font-family: 'LeagueGothicRegular', Helvetica, Arial, san-serif;
@@ -175,19 +108,16 @@ a {
 	#site-title {
 		font-size: 48px;
 	}
-	#site-logo {
-		top: -1px;
-		.logo {
-			width: 40px;
-			height: 40px;
-			background-size: 40px 40px;
-		}
+	.nexus-title a:before {
+		width: 40px;
+		height: 40px;
+		background-size: 40px 40px;
 	}
 	#site-description {
 		display: none;
 	}
 	#primary-menu {
-		margin-top: 9px;
+		margin-top: 15px;
 	}
 }
 
@@ -200,28 +130,52 @@ a {
   font-weight: bold;
 }
 
-#site-logo {
-  float: left;
-  position: relative;
-  top: -5px;
-  padding-right: 10px;
-  
-
-  .logo {
-    width: 64px;
-    height: 64px;
-    background-size: 64px 64px;
-    background-image: url('../images/nx-logo-grayscale.png');
-    display: block;
-  }
-
+.nexus-title a {
+	display: block;
+	&:before {
+		content: " ";
+	    width: 64px;
+	    height: 64px;
+	    background-size: 64px 64px;
+	    background-image: url('../images/nx-logo-grayscale.png');
+	    display: inline-block;
+	    position: relative;
+      	top: 2px;
+      	margin-right: 10px;
+      	text-align: center;
+	}
 }
 
 #header-container:hover {
-  #site-logo .logo {
-    background-image: url('../images/nx-logo-color.png');
-  }
+  	.nexus-title a:before {
+    	background-image: url('../images/nx-logo-color.png');
+	}
 }
+
+
+
+// #site-logo {
+//   float: left;
+//   position: relative;
+//   top: -5px;
+//   padding-right: 10px;
+  
+
+//   .logo {
+//     width: 64px;
+//     height: 64px;
+//     background-size: 64px 64px;
+//     background-image: url('../images/nx-logo-grayscale.png');
+//     display: block;
+//   }
+
+// }
+
+// #header-container:hover {
+//   #site-logo .logo {
+//     background-image: url('../images/nx-logo-color.png');
+//   }
+// }
 
 @-webkit-keyframes logo-rotate {
   from {
@@ -231,20 +185,25 @@ a {
     -webkit-transform: rotate(360deg);
   }
 }
-#site-logo.idle {
-  .logo {
-    -webkit-transform: scale(.9);
-  }
-  -webkit-animation-name:             logo-rotate; 
-  -webkit-animation-duration:         30s; 
-  -webkit-animation-iteration-count:  infinite;
-  -webkit-animation-timing-function:  linear;
+// #site-logo.idle {
+//   .logo {
+//     -webkit-transform: scale(.9);
+//   }
+//   -webkit-animation-name:             logo-rotate; 
+//   -webkit-animation-duration:         30s; 
+//   -webkit-animation-iteration-count:  infinite;
+//   -webkit-animation-timing-function:  linear;
+// }
+.nexus-title.idle a:before {
+	-webkit-animation-name:             logo-rotate; 
+	-webkit-animation-duration:         30s; 
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-animation-timing-function:  linear;	
 }
 
 #primary-menu {
 	
 	font-size: emCalc(13px);
-	text-align: right;
 	margin-top: 13px; // align the menu with the middle of the nexus letters
 
 	a {
@@ -274,16 +233,12 @@ a {
 
 /*
 ======================================================
-	Villain / Hero
+	Hero
 ======================================================
 */
 
 #content-container {
 	padding: 1em 0 2em 0;
-}
-
-#villain-container, #hero-container {
-	// overflow: hidden;
 }
 
 #villain-container {
@@ -297,17 +252,12 @@ a {
 	box-shadow: 0px 1px 10px rgba(50, 50, 50, 0.15);
 }
 
-.hero-meta {
+.single-episode .hero-meta {
 	font-family: 'Open Sans', sans-serif;
 	text-shadow: 0 1px 1px #ddd;
 	font-size: 16px;
 	margin-top: 10px;
 	line-height: 26px;
-	@include grid-column($columns:7);
-}
-
-.hero-art {
-	@include grid-column($columns:5);
 }
 
 
@@ -367,23 +317,38 @@ a {
 	}
 
 	.content-section {
-		&:before {
+/* 		&:before {
+			// hr break line
 			content: ' ';
 			width: 100%;
 			margin: auto;
-			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
-			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
-			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
-			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.50), rgba(0,0,0,0));
-			height: 1px;
+			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			height: 3px;
 			display: block;
 			margin: 15px auto 15px auto;
-		}
+		} */
+	}
+
+	.content-footer {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.content-footer .navigation {
+		font-size: 11px;
+		@include clearfix;
+	}
+	.content-footer .next {
+		float: right;
+	}
+	.content-footer .previous {
+		float: left;
 	}
 
 	.show-title {
 		font-size: 2.2em;
-		
 	}
 
 	.show-number, .show-date {
@@ -425,6 +390,7 @@ a {
 		padding: 0px 10px 0 15px;
 	}
 	.content-footer {
+		margin-top: 3em;
 		padding: 0 10px 10px 10px;
 	}
 
@@ -442,23 +408,431 @@ a {
 
 }
 
-.show-file {
-	margin-bottom: 10px;
+.episode-new {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #f00;
 }
 
-.download-meta {
+.episode-download-meta {
 	font-size: 11px;
 	padding: 2px 15px 0 15px;
 	color: #444;
+	margin-bottom: 15px;
+}
+.show-download {
+	display: block;
+	float: right;
+}
 
-	.show-download {
-		display: block;
-		float: right;
+.series-subscriptions {
+	font-size: 14px;
+	list-style: none;
+	padding-left: 15px;
+
+	.regular a {
+		margin-left: 3px;
+		padding: 0px 0 0 19px;
+		background: url("../images/rss/04.png") no-repeat 0 50%;
 	}
+	
+	.with-fringe a {
+		margin-left: 3px;
+		padding: 0px 0 0 19px;
+		background: url("../images/rss/49.png") no-repeat 0 50%;
+	}
+}
 
+.sidebar {
+	h3, h4 {
+		margin-bottom: 10px;
+	}
+}
+
+.primary-people, .secondary-people {
+	font-size: 13px;
+}
+
+.single-episode .primary-people {
+	@include grid-row($behavior: nest);
+}
+
+.single-episode .person {
+	@include grid-column(4);
+	text-align: center;
+	margin-bottom: 15px;
+	height: 100px;
+}
+.person img.avatar {
+	border: 2px solid #fff;
+	@include box-shadow(1px 1px 5px #666);
 }
 
 // mejs-container fix
 .mejs-container, .mejs-container * {
 	@include box-sizing(content-box);
+}
+
+/*
+======================================================
+	Showboard / Front Page
+======================================================
+*/
+
+.episode-albumart {
+	// text-align: center;
+	img {
+		margin: auto;
+		border: 5px solid #fff;
+	}
+	a img {@include box-shadow(1px 1px 5px #aaa);}
+	a:hover img {@include box-shadow(1px 1px 7px #666);}
+}
+
+
+#showboard .episode {
+	padding-top: 25px;
+	height: 260px;
+}
+#showboard {
+	.show-title {
+		font-size: 16px;
+		.long {font-size: 15px;}
+		.epic-long {font-size: 14px;}
+	}
+	.show-number {
+		font-size: 14px;
+	}
+	.show-date {
+		font-size: 13px;
+		color: #666;
+	}
+
+	.bottom {
+		&:before {
+			// hr break line
+			content: ' ';
+			width: 100%;
+			margin: auto;
+			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			height: 3px;
+			display: block;
+			margin: 15px auto 15px auto;
+			@include clearfix;
+		}
+	}
+
+}
+
+.baseline {
+	padding: 0 2em 0 2em;
+	@include clearfix;
+}
+.all-shows {
+	float: left;
+}
+.more-episodes {
+	float: right;
+}
+
+/*
+======================================================
+	Footer and Subisiaries
+======================================================
+*/
+
+#footer-container {
+	color: #666;
+	font-size: 13px;
+	text-align: center;
+}
+
+/*
+======================================================
+	Archives and Categories
+======================================================
+*/
+.category-meta {font-size: 18px;}
+.archive  {
+
+	.episode {
+		@include clearfix;
+		// @include grid-column($columns: 12);
+		@include box;
+	}
+
+	.show-albumart {
+		padding: 0em 2em 1em 1em;
+		float: left;
+	}
+	.show-number {
+		color: #444;
+		font-size: 14px;
+	}
+	.show-date {
+		color: #666;
+		font-size: 14px;
+	}
+	.show-description {
+		margin-top: 1em;
+		font-size: 14px;
+	}
+
+}
+
+.archive {
+
+	.person {
+		@include clearfix;
+		@include box;
+	}
+
+	.person-avatar {
+		float: left;
+		padding: 0 2em 1em 1em;
+	}
+
+}
+
+/*
+======================================================
+	Single person
+======================================================
+*/
+.single-person { 
+	.person .box {
+		@include box(.20);
+		@include clearfix;
+	}
+	.person-avatar {
+		float: left;
+		padding: 0 2em 1em 1em;
+	}
+	.person-links {
+		overflow: hidden;
+		list-style: none;
+		font-size: 14px;
+		padding: 0;
+		margin-top: 0;
+		li {
+			display: inline;
+			margin-right: 2em;
+		}
+	}
+	.person-content {
+		// overflow: hidden;
+		line-height: 1.3em;
+	}
+	.episodes-with {
+		clear: both;
+		font-size: 18px;
+	}
+	.episode-list {
+		list-style: square;
+		font-size: 14px;
+	}
+	.related:before {
+		content: ' ';
+		width: 100%;
+		margin: auto;
+		background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		height: 3px;
+		display: block;
+		margin: 15px auto 15px auto;
+		@include clearfix;
+	}
+
+}
+
+/*
+======================================================
+	Villain
+======================================================
+*/
+
+#villain-container {
+	background-color: #000;
+	@include box-shadow(1px 1px 30px #000);
+	@include clearfix;
+}
+
+.villain {
+	// width: 33.3333%;
+	margin-left: 0px;
+	margin-right: 0px;
+	// float: left;
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	// height: 300px;
+	overflow: hidden;
+
+
+
+	.face {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.35) 100%);
+	}
+	.face:hover { background-image: none; }
+	.face:hover .mask {
+		background-color: rgba(0, 0, 0, 0.75);
+		text-shadow: 1px 1px 5px #ffffde;
+	}
+
+	.mask {
+		position: absolute;
+		z-index: 1;
+		bottom: 0;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.35);
+		padding: 10px 15px 15px;
+	}
+
+
+	.show-title {
+		color: #fff;
+		font-size: 28px;
+		.long {
+			font-size: 24px;
+		}
+		.epic-long {
+			font-size: 22px;
+		}
+	}
+	.show-number {
+		color: #eee;
+		text-shadow: none;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.show-date {
+		color: #eee;
+		text-shadow: none;
+		font-size: 14px;
+		font-weight: bold;	
+	}
+
+}
+
+
+/*
+======================================================
+	Loop Pagination
+======================================================
+*/
+
+.loop-pagination {
+	margin-top: 3em;
+	text-align: center;
+	@include box;
+
+	.page-numbers {
+		padding: 0 1em 0 1em;
+	}
+
+	.current {
+		background-color: #f5f5f5;
+	}
+
+}
+
+
+
+/*
+======================================================
+	Not Found / 404
+======================================================
+*/
+.not-found {
+	@include clearfix;
+	@include box;
+	padding-bottom: 5em;
+}
+#kawaii-error {
+	background-image: url('../images/kawaii-error.png');
+	display: block;
+	width: 600px;
+	height: 594px;
+	margin: auto;
+	border: 5px solid #fff;
+	@include box-shadow(1px 1px 10px #999);
+}
+
+/*
+======================================================
+	Page - Shows
+======================================================
+*/
+
+.page #content-container {
+	padding-top: 2em;
+}
+.series-status {
+	margin-top: 0px;
+	font-size: 14px;
+	.show-title {
+		display: inline;
+		font-size: inherit;
+	}
+}
+
+/*
+======================================================
+	Noticeboard / Front page
+======================================================
+*/
+
+#noticeboard {
+	@include clearfix;
+	@include box(.35);
+
+	font-family: georgia, "times new roman", times, serif;
+
+	p {
+		font-size: 1em;
+		line-height: 1.25em;
+		margin: 0.625em;
+		text-align: left;
+	}
+
+	p:first-child {
+		font-size: 1.2em;
+	}
+
+	p + p {
+		text-indent: 1em;
+	}
+
+	p.signoff {
+		text-align: right;
+	}
+	span.signed {
+		float: right;
+		text-align: left;
+		text-indent: -9999px;
+		white-space: nowrap;
+		background-image: url('../images/ryan-signature.png');
+		background-repeat: none;
+		width: 120px;
+		height: 84px;
+		background-size: 120px 84px;
+		display: inline-block;
+	}
+
 }

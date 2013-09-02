@@ -44,5 +44,19 @@ class Coprime_Series {
 		return $this->wrap($template, 'series-name');
 	}
 
+	public function get_series_subscriptions() {
+		$name = $this->series->get_name();
+		$feed = $this->series->get_feed_permalink();
+
+		$template = "<a href=\"{$feed}\">{$name}</a>";
+		$output = $this->wrap($template, 'regular', 'li');
+
+		if ( 'tf' != $this->series->get_slug() ) {
+			$template = "<a href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
+			$output = $output . $this->wrap($template, 'with-fringe', 'li');
+		}
+
+		return $this->wrap($output, 'series-subscriptions', 'ul');
+	}
 
 }

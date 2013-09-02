@@ -1,0 +1,147 @@
+/*
+======================================================
+	Mobile layout
+======================================================
+*/
+
+.header-wrapper {
+	@include grid-row();
+}
+
+.identity {
+	@include grid-column($columns: 12);
+	text-align: center;
+}
+
+#primary-menu {
+	@include grid-column(12);
+	text-align: center;
+}
+
+.hero-wrapper {
+	@include grid-row();
+	text-align: center;
+}
+
+.content-wrapper {
+	@include grid-row();
+}
+
+.single-episode .episode {
+	@include grid-column(12);
+}
+
+.single-episode {
+
+	.sidebar-wrapper {
+		@include grid-row($behavior: nest);	
+	}
+
+	.sidebar,
+	.episode,
+	.hero-meta,
+	.hero-album-art {
+		@include grid-column(12);
+	}
+
+	.people {
+		@include grid-column(12);
+	}
+	.share, .subscribe {
+		@include grid-column(6);
+	}
+
+}
+
+#showboard .top,
+#showboard .bottom {
+	@include grid-row();
+}
+
+#showboard .episode {
+	@include grid-column(12);
+	text-align: center;
+}
+
+
+// villain is not made with foundation, but include here for mobile
+.villain {
+	width: 100%;
+	float: none;
+	height: 250px;
+}
+
+.show-block {
+	@include grid-column($columns: 12);
+	margin-bottom: 3em;
+	text-align: center;
+}
+
+/*
+======================================================
+	(Regular) 768px+ layout
+======================================================
+*/
+@media #{$small} {
+
+	.identity {
+		@include grid-column($columns: 5, $center: false);
+		text-align: left;
+	}
+
+	#primary-menu {
+		@include grid-column(7);
+		text-align: right;
+	}
+
+	.hero-wrapper {
+		text-align: left;
+	}
+
+	.hero-wrapper {
+		@include grid-row();
+	}
+
+	.content-wrapper {
+		@include grid-row();
+	}
+
+	.single-episode {
+
+		.episode {@include grid-column(8);}
+		.sidebar {@include grid-column(4);}
+		.hero-meta {@include grid-column(7);}
+		.hero-album-art {@include grid-column(5);}
+
+		.share, .subscribe {
+			@include grid-column(12);
+		}
+	}
+
+	#showboard .episode {
+		@include grid-column(4);
+		text-align: left;
+	}
+
+	// villain is not made with foundation
+	.villain {
+		float: left;
+		width: 33.333333%;
+		height: 300px;
+	}
+
+	.show-block {
+		@include grid-column($columns: 4);
+	}
+
+
+
+
+
+
+
+
+
+
+
+}

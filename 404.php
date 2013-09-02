@@ -1,17 +1,5 @@
 <?php get_header(); ?>
 
-		<?php do_action('before_hero'); // better name for this hook, please? ?>
-
-		<section id="hero-container">
-			<div class="hero-wrapper">
-				
-				<?php do_action('in_hero'); // better name for this hook, please? ?>
-
-			</div>
-		</section>
-
-		<?php do_action('after_hero'); // better name for this hook, please? ?>
-
 		<?php do_action('before_world'); ?>
 
 		<section id="world">
@@ -20,19 +8,20 @@
 					
 					<?php do_action('before_content'); ?>
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-					<article id="item-<?php the_ID(); ?>" role="article" <?php post_class(); ?>>
+					<article id="item-0" role="article" class="not-found">
 						
 						<?php do_action('before_in_content'); ?>
 
 						<header class="content-header">
-							<h2><?php the_title(); ?></h2>
+							<h1 class="not-found-title">Not Found</h1>
 							<!-- stuff -->
 							<?php do_action('in_content_header'); ?>
 						</header>
 						<section class="content-section">
-							<!-- content goes here -->
+							<?php $requested = home_url( esc_url( $_SERVER['REQUEST_URI'] ) ); ?>
+							<p>Hey, your requested page, <code><?php echo $requested; ?></code>, was not found.</p>
+							<div id="kawaii-error"></div>
 							<?php do_action('in_content_section'); ?>
 						</section>
 						<footer class="content-footer">
@@ -43,10 +32,6 @@
 						<?php do_action('after_in_content'); ?>
 
 					</article>
-
-					<?php endwhile; endif; ?>
-
-					<?php do_action('after_content'); ?>
 
 				</div>
 			</div>

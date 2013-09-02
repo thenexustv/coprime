@@ -10,15 +10,13 @@
 			$episode = Nexus_Episode::factory(get_the_ID());
 			$series = $episode->get_series();
 
-			// var_dump($episode);
-
 			$cp_episode = new Coprime_Episode($episode);
 			$cp_series = new Coprime_Series($series);
 
 
 		?>
 
-		<?php do_action('before_hero'); // better name for this hook, please? ?>
+		<?php do_action('before_hero'); ?>
 
 		<section id="hero-container">
 			<div class="hero-wrapper">
@@ -28,14 +26,16 @@
 					<div class="show-series-description"><?php echo $cp_series->get_series_description(); ?></div>
 				</div>
 				<div class="hero-album-art">
-					<img src="http://i1.wp.com/the-nexus.tv/wp-content/uploads/2012/10/at-the-nexus-site.jpg?fit=300%2C300" alt="Alpaca Poncho" class="Thumbnail thumbnail medium ">
+					<?php
+						echo $cp_episode->get_hero_albumart();
+					?>
 				</div>
-				<?php do_action('in_hero'); // better name for this hook, please? ?>
+				<?php do_action('in_hero'); ?>
 
 			</div>
 		</section>
 
-		<?php do_action('after_hero'); // better name for this hook, please? ?>
+		<?php do_action('after_hero'); ?>
 
 
 		<?php do_action('before_world'); ?>
@@ -57,7 +57,7 @@
 								<div class="show-meta">
 									<h2 class="show-number"><?php echo $cp_episode->get_episode_position(); ?></h2>
 									 &blacksquare; 
-									<h3 class="show-date"><?php echo $cp_episode->get_posted_date(); ?></h3>
+									<h3 class="show-date"><?php echo $cp_episode->get_posted_date_ago(); ?></h3>
 								</div>
 								
 								<?php if ( $episode->get_excerpt() != '' ): ?>
@@ -71,16 +71,11 @@
 							</header>
 							<aside class="content-aside">
  
-								<?php if ( $episode->get_enclosure() ): ?>
-									<div class="show-file">
-										
-										<?php echo $cp_episode->get_podcast_player(); ?>
-										<div class="download-meta">
-											<span class="show-length">43 minutes</span> &blacksquare; <span class="show-size">37.2 MB</span>
-											<span class="show-download"><a href="dww">Download</a></span></div>
-
-									</div>
-								<?php endif; ?>		
+								<?php if ( $episode->get_enclosure() ):
+									$enclosure = $episode->get_enclosure();
+									echo $cp_episode->get_podcast_player($enclosure);
+									echo $cp_episode->get_podcast_meta($enclosure);
+								endif; ?>		
 
 							</aside>
 							<section class="content-section">						
@@ -93,7 +88,11 @@
 							</section>
 							<footer class="content-footer">
 
-								<?php do_action('in_content_footer'); ?>
+								<div class="navigation">
+									<span class="previous"><?php echo previous_post_link('%link', '&larr; Previous', true); ?></span>
+									<span class="next"><?php echo next_post_link('%link', 'Next &rarr;', true); ?></span>
+									<?php do_action('in_content_footer'); ?>
+								</div>
 
 							</footer>
 							
@@ -107,17 +106,16 @@
 					<?php do_action('before_sidebar'); ?>
 
 					<div class="sidebar">
-						<div class="box">
-							<h3>People</h3>
-						</div>
+						<div class="sidebar-wrapper">
+					
+						<?php if ($episode->has_people()): get_template_part('partials/episode-people'); endif; ?>
 
-						<div class="box">
-							<h3>Subscribe</h3>
-							<!-- subscribe -->
+						<?php get_template_part('partials/episode-subscribe') ?>
+						
+						<?php get_template_part('partials/episode-share'); ?>
+						
+						
 						</div>
-						<!-- share -->
-						<!-- navigation -->
-
 					</div>
 
 					<?php do_action('after_sidebar'); ?>
