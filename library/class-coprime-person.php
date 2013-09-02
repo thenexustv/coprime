@@ -47,8 +47,8 @@ class Coprime_Person {
 		$text = strip_tags($content);
 
 		if ( strlen($text) > $length ) {
-			$text = substr($text, 139);
-			$text = '...';
+			$text = substr($text, $length);
+			$text = $text . '...';
 		}
 
 		return $this->wrap($text, 'person-content', 'p');
