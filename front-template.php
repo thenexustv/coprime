@@ -6,7 +6,7 @@
 ?>
 <?php get_header(); ?>
 
-        <?php do_action('before_villain'); // better name for this hook, please? ?>
+        <?php do_action('before_villain'); ?>
 
         <section id="villain-container">
             <div class="villain-wrapper">
@@ -19,12 +19,12 @@
                     get_template_part('partials/villain');
                     endwhile; ?>
 
-                <?php do_action('in_villain'); // better name for this hook, please? ?>
+                <?php do_action('in_villain'); ?>
 
             </div>
         </section>
 
-        <?php do_action('after_villain'); // better name for this hook, please? ?>
+        <?php do_action('after_villain'); ?>
 
         <?php do_action('before_world'); ?>
 

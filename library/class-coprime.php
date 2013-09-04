@@ -17,6 +17,9 @@ class Coprime {
 
 		add_action('pre_get_posts', array($this, 'adjust_person_archives'));
 
+		// clears series list data from cache
+		add_action('save_post', array($this, 'update_series_list_data'), 1, 2);
+
 	}
 
 	public function adjust_person_archives($query) {
@@ -122,21 +125,18 @@ class Coprime {
 		return $query;
 	}
 
-	public function get_shows_query() {
+	public function get_series_list_query() {
 
-		$post_ids = $this->get_show_query_data();
-		var_dump($post_ids);
-		$arguments = array(
-			'post_type' => 'episode',
-			'post__in ' => $post_ids,
-			'posts_per_page' => count($post_ids),
-		);
-		$query = new WP_Query($arguments);
-		return $query;
+		$post_ids = get_transient('coprime_get_series_list_query');
+		if ( false === $post_ids ) {
+			$post_ids = $this->get_series_list_data();
+			set_transient('coprime_get_series_list_query', $post_ids, 60 * 60 * 12);
+		}
 
+		return $post_ids;
 	}
 
-	public function get_category_guide_query() {
+	private function get_series_list_data() {
 		$arguments = array(
 			'orderby' => 'name',
 			'hide_empty' => 1,
@@ -157,6 +157,13 @@ class Coprime {
 		}
 		wp_reset_postdata();
 		return $post_ids;
+	}
+
+	public function update_series_list_data($post_id, $post) {
+		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $post_id;
+		if ( $post->post_type == 'episode' ) {
+			delete_transient('coprime_get_series_list_query');
+		}
 	}
 
 	private function exclude_fringe($arguments = array()) {

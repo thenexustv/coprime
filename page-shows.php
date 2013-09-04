@@ -15,17 +15,16 @@
 
 					<?php
 
-						// $query = Coprime::get_instance()->get_shows_query();
-						$post_ids = Coprime::get_instance()->get_category_guide_query();
+						$post_ids = Coprime::get_instance()->get_series_list_query();
 
 						// while ( $query->have_posts() ): $query->the_post();
 
 						foreach ($post_ids as $post_id):
-						$episode = Nexus_Episode::factory($post_id);
-						$series = $episode->get_series();
+							$episode = Nexus_Episode::factory($post_id);
+							$series = $episode->get_series();
 
-						$cp_episode = new Coprime_Episode($episode);
-						$cp_series = new Coprime_Series($series);
+							$cp_episode = new Coprime_Episode($episode);
+							$cp_series = new Coprime_Series($series);
 					?>
 
 					<article id="item-<?php the_ID(); ?>" role="article" class="show-block">
@@ -33,7 +32,7 @@
 						<?php do_action('before_in_content'); ?>
 
 						<header class="content-header">
-							<div class="show-albumart"><?php echo $cp_episode->get_showboard_albumart(); ?></div>
+							<div class="show-albumart"><?php echo $cp_episode->get_series_list_albumart(); ?></div>
 							<h3 class="show-series-name"><?php echo $cp_series->get_series_name(); ?></h3>
 							
 							<?php if ( $episode->is_new() ): ?>

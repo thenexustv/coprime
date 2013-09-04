@@ -47,8 +47,8 @@ class Coprime_Person {
 		$text = strip_tags($content);
 
 		if ( strlen($text) > $length ) {
-			$text = substr($text, $length);
-			$text = $text . '...';
+			$text = substr($text, 0, $length);
+			$text = $text . "<a href=\"{$this->person->get_permalink()}\">...</a>";
 		}
 
 		return $this->wrap($text, 'person-content', 'p');

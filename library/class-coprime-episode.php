@@ -174,6 +174,20 @@ class Coprime_Episode {
 		return $this->wrap($template, 'episode-albumart', 'div');
 	}
 
+	public function get_series_list_albumart() {
+		$image = $this->episode->get_albumart(array('size' => 'thumbnail'));
+
+		$url = $this->episode->get_series()->get_permalink();
+		if ( empty($url) ) $url = $this->episode->get_permalink();
+
+		if ( $image )
+			$template = "<a href=\"{$url}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+		else
+			$template = "<div><!-- --></div>";
+		
+		return $this->wrap($template, 'episode-albumart', 'div');
+	}
+
 	// villain needs raw urls
 	public function get_villain_albumart() {
 		$image = $this->episode->get_albumart(array('size' => 'large'));
