@@ -558,11 +558,12 @@ a {
 .category-meta {font-size: 18px;}
 .archive  {
 
-	.episode {
-		@include clearfix;
-		// @include grid-column($columns: 12);
-		@include box;
-	}
+}
+
+.episode.stand-alone {
+	
+	@include clearfix;
+	@include box;
 
 	.show-albumart {
 		padding: 0em 2em 1em 1em;
