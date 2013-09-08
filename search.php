@@ -7,7 +7,7 @@
 				
 				<div class="hero-meta">
 
-					<h1 class="loop-title archive-title">Search Results <?php echo ( isset($_GET['s']) && !empty($_GET['s']) ? 'for <em>' . htmlentities(urldecode($_GET['s'])) . '</em>' : "" ); ?></h1>
+					<h1 class="loop-title archive-title">Search Results <?php echo ( isset($_GET['s']) && !empty($_GET['s']) ? 'for <em>' . esc_html(urldecode($_GET['s'])) . '</em>' : "" ); ?></h1>
 
 
 				</div>
