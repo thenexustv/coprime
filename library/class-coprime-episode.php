@@ -96,7 +96,7 @@ class Coprime_Episode {
 	}
 
 	public function get_posted_date_ago() {
-		$diff = Nexus_Core::human_time_difference( $this->episode->get_posted_date('U'), current_time('timestamp') ) ;
+		$diff = Nexus_Utility::human_time_difference( $this->episode->get_posted_date('U'), current_time('timestamp') ) ;
 		$date = $this->episode->get_posted_date('F jS Y');
 		$raw = $this->episode->get_posted_date('r');
 		$ago = "$diff ago";
@@ -137,8 +137,8 @@ class Coprime_Episode {
 	public function get_podcast_meta($enclosure) {
 		$enclosure = apply_filters('get_podcast_meta_enclosure', $enclosure);
 
-		$duration = apply_filters('get_podcast_meta_duration', Nexus_Core::human_duration($enclosure['duration']));
-		$size = apply_filters('get_podcast_meta_size', Nexus_Core::human_filesize($enclosure['size']));
+		$duration = apply_filters('get_podcast_meta_duration', Nexus_Utility::human_duration($enclosure['duration']));
+		$size = apply_filters('get_podcast_meta_size', Nexus_Utility::human_filesize($enclosure['size']));
 		$url = apply_filters('get_podcast_meta_url', $enclosure['url']);
 
 		$template_duration = $this->wrap($duration, 'episode-duration');

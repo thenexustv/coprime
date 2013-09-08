@@ -47,7 +47,7 @@
 				endforeach;
 			?>
 			
-			<p class="and-also"><span>Also with: </span><?php echo Nexus_Core::human_list($people) ?></p>
+			<p class="and-also"><span>Also with: </span><?php echo Nexus_Utility::human_list($people) ?></p>
 			
 		</div>
 		<?php endif; ?>

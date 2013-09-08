@@ -7,22 +7,8 @@
 				
 				<div class="hero-meta">
 
+					<h1 class="loop-title archive-title">Search Results <?php echo ( isset($_GET['s']) && !empty($_GET['s']) ? 'for <em>' . esc_html(urldecode($_GET['s'])) . '</em>' : "" ); ?></h1>
 
-					<?php if ( is_post_type_archive('episode') ): ?>
-
-						<h1 class="loop-title archive-title">The Latest Episodes</h1>
-
-						<div class="loop-meta archive-meta post-type-meta">
-							Enjoy the latest episodes from The Nexus.
-						</div>
-
-					<?php elseif ( is_category() ): ?>
-						<h1 class="loop-title archive-title"><?php single_cat_title(); ?></h1>
-
-						<div class="loop-meta archive-meta category-meta">
-							<?php echo category_description(); ?>
-						</div>
-					<?php endif; ?>
 
 				</div>
 				<?php do_action('in_hero'); ?>
