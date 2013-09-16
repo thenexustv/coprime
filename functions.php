@@ -6,5 +6,4 @@ require_once('library/class-coprime-series.php');
 require_once('library/class-coprime-person.php');
 
 
-
-add_action('after_setup_theme', array('Coprime', 'get_instance'), 16);
+Coprime::get_instance();

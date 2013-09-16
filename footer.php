@@ -7,11 +7,11 @@
 
 	<footer id="footer-container" role="contentinfo">
 		<div class="footer-inner">
-			
-			<?php do_action('in_footer'); ?>
+
 			<div class="endpoint">
 				<p class="source-org copyright">&copy; 2013</p>
 			</div>
+			<?php do_action('in_footer'); ?>
 
 		</div>
 	</footer>
