@@ -6,6 +6,18 @@ class Coprime {
 
 	private function __construct() {
 
+		add_action('after_setup_theme', array($this, 'setup_theme'), 16);
+
+		add_action('pre_get_posts', array($this, 'adjust_person_archives'));
+
+		if ( current_user_can('administrator') ) {
+			add_action('in_footer', array($this, 'admin_statistics'));
+		}
+
+	}
+
+	public function setup_theme() {
+
 		add_theme_support('menus');
 		$this->register_menus();
 
@@ -15,20 +27,17 @@ class Coprime {
 
 		add_filter('body_class', array($this, 'add_body_classes'));
 
-		add_action('pre_get_posts', array($this, 'adjust_person_archives'));
-
 		// clears series list data from cache
 		add_action('save_post', array($this, 'update_series_list_data'), 1, 2);
-
 	}
 
 	public function adjust_person_archives($query) {
 		if ( $query->is_post_type_archive('person') && !is_admin() ) {
 
-			$query->set('posts_per_page', 12);
+			$query->set('posts_per_page', 10);
 			$query->set('orderby', 'title');
 			$query->set('order', 'ASC');
-			$query->set('meta_key', 'confluence-person-host');
+			$query->set('meta_key', 'nexus-people-host');
 
 			add_filter('posts_orderby', array($this, 'adjust_person_archives_orderby'));
 		}
@@ -164,6 +173,14 @@ class Coprime {
 		if ( $post->post_type == 'episode' ) {
 			delete_transient('coprime_get_series_list_query');
 		}
+	}
+
+	public function admin_statistics() {
+		$timer = timer_stop(0, 2);
+		$queries = get_num_queries();
+		$content = "{$timer} seconds | {$queries} queries";
+		$template = "<div style=\"margin: 1em;\" class=\"statistics\">{$content}</div>";
+		echo $template;
 	}
 
 	private function exclude_fringe($arguments = array()) {
