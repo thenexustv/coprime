@@ -5,10 +5,7 @@ class Coprime {
 	use Nexus_Singleton;
 
 	private function __construct() {
-
 		add_action('after_setup_theme', array($this, 'setup_theme'), 16);
-
-		add_action('pre_get_posts', array($this, 'adjust_person_archives'));
 
 		if ( current_user_can('administrator') ) {
 			add_action('in_footer', array($this, 'admin_statistics'));
@@ -17,7 +14,6 @@ class Coprime {
 	}
 
 	public function setup_theme() {
-
 		add_theme_support('menus');
 		$this->register_menus();
 
@@ -31,28 +27,6 @@ class Coprime {
 		add_action('save_post', array($this, 'update_series_list_data'), 1, 2);
 	}
 
-	public function adjust_person_archives($query) {
-		if ( $query->is_post_type_archive('person') && !is_admin() ) {
-
-			$query->set('posts_per_page', 12);
-			$query->set('orderby', 'title');
-			$query->set('order', 'ASC');
-			$query->set('meta_key', 'nexus-people-host');
-
-			add_filter('posts_orderby', array($this, 'adjust_person_archives_orderby'));
-		}
-
-		return $query;
-	}
-
-	public function adjust_person_archives_orderby($orderby) {
-		global $wpdb;
-		$orderby = $wpdb->postmeta . '.meta_value DESC, ' . $orderby;
-
-		remove_filter('posts_orderby', array($this, 'adjust_person_archives_orderby'));
-
-		return $orderby;
-	}
 
 	public function enqueue_styles() {
 		wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700');

@@ -8,7 +8,7 @@
 				<div class="hero-meta">
 
 					<div class="loop-meta archive-meta category-meta">
-						<p>Meet the people that make The Nexus incredible.
+						<p>Meet the <a href="<?php echo site_url('person/hosts/'); ?>">Hosts</a> and <a href="<?php echo site_url('person/guests/'); ?>">Guests</a> that make The Nexus incredible.</p>
 					</div>
 
 				</div>
