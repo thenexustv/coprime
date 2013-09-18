@@ -23,7 +23,7 @@ class Coprime {
 
 		// Load public-facing style sheet and JavaScript.
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
-		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));		
+		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
 		add_filter('body_class', array($this, 'add_body_classes'));
 
@@ -34,7 +34,7 @@ class Coprime {
 	public function adjust_person_archives($query) {
 		if ( $query->is_post_type_archive('person') && !is_admin() ) {
 
-			$query->set('posts_per_page', 10);
+			$query->set('posts_per_page', 12);
 			$query->set('orderby', 'title');
 			$query->set('order', 'ASC');
 			$query->set('meta_key', 'nexus-people-host');
