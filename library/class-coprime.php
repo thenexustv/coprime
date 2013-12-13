@@ -65,15 +65,40 @@ class Coprime {
 	}
 
 
-	public function get_villain_query() {
+	public function get_villain_query($how_many = 3) {
 		$arguments = array(
 	        'post_type' => 'episode',
-	        'posts_per_page' => 3
+	        'posts_per_page' => intval($how_many)
 	    );
+
 	    $arguments = $this->exclude_fringe($arguments);
+	    $ago = date('y-m-d', strtotime('-1 week'));
+	    $now = date('y-m-d');
+
+	    $fn = function($where = '') use ($ago, $now) {
+	    	$where .= "AND post_date >= '$ago' AND post_date < '$now'";
+	    	return $where;
+	    };
+
+	    add_filter('posts_where', $fn);
 	    $query = new WP_Query($arguments);
+	    remove_filter('posts_where', $fn);
+
+	    // is there at least a single post?
+	    if ( $query->post_count == 0 ) {
+	    	$query = new WP_Query($arguments);
+	    	return $query;
+	    }
+
 	    return $query;
 	}
+
+	// public function get_villain_propensity() {
+	// 	$arguments = array(
+	//         'post_type' => 'episode',
+	//         'posts_per_page' => 3
+	//     );
+	// }
 
 	public function get_showboard_primary_query($post_ids = array()) {
 		$arguments = array(
