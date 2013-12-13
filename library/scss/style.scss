@@ -663,6 +663,20 @@ a {
 	@include clearfix;
 }
 
+#villain-container.dictator {
+	background-color: transparent;
+	@include box-shadow(none);
+}
+
+.dictator {
+	.villain {
+		margin: 30px auto;
+		position: relative;
+		border: 5px solid #fff;
+		@include box-shadow(1px 1px 10px #999);
+	}
+}
+
 .villain {
 	// width: 33.3333%;
 	margin-left: 0px;
@@ -678,8 +692,6 @@ a {
 	background-repeat: no-repeat;
 	// height: 300px;
 	overflow: hidden;
-
-
 
 	.face {
 		position: absolute;
@@ -783,7 +795,7 @@ a {
 */
 
 .page #content-container {
-	padding-top: 2em;
+	padding-top: 1em;
 }
 .page.page-template-default .content-wrapper {
 	@include box;

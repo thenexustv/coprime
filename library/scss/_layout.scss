@@ -71,6 +71,12 @@
 	height: 250px;
 }
 
+.dictator .villain {
+	width: 98%;
+	float: none;
+	height: 250px;
+}
+
 .show-block {
 	@include grid-column($columns: 12);
 	margin-bottom: 3em;
@@ -130,18 +136,14 @@
 		height: 300px;
 	}
 
+	.dictator .villain {
+		width: 900px;
+		float: none;
+		height: 420px;
+	}
+
 	.show-block {
 		@include grid-column($columns: 4);
 	}
-
-
-
-
-
-
-
-
-
-
 
 }
