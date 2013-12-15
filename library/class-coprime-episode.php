@@ -77,8 +77,23 @@ class Coprime_Episode {
 		return $this->wrap($template, 'with-fringe');
 	}
 
+	public function get_with_parent() {
+		$parent_id = $this->episode->get_parent();
+		if (!$parent_id) return '';
+		$parent = Nexus_Episode::factory($parent_id);
+		$slug = strtoupper($parent->get_series()->get_slug());
+		$template = " &blacksquare; <a href=\"{$parent->get_permalink()}\">{$slug} #{$parent->get_episode_number()}</a>";
+		return $this->wrap($template, 'with-parent');
+	}
+
+	public function get_with_related_episode() {
+
+		return "{$this->get_with_fringe()} {$this->get_with_parent()}";
+
+	}
+
 	public function get_episode_position() {
-		return "Episode #{$this->get_episode_number()}{$this->get_with_fringe()}";
+		return "Episode #{$this->get_episode_number()}{$this->get_with_related_episode()}";
 	}
 
 	public function get_posted_date() {
