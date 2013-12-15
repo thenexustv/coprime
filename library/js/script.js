@@ -4,7 +4,6 @@
 		// find all the rails, likely to be only one
 		var rails = $(document).find('.mejs-time-rail');
 		rails.width( rails.width() - 1 );
-		console.log( rails.width() );
 	}
 
 	function mejs_attach_click() {
@@ -19,7 +18,7 @@
 		});
 	}
 
-	function mejs_rails_fix_setup() {
+	function setup_mejs_rails_fix() {
 
 		setTimeout(function(){
 
@@ -31,7 +30,7 @@
 
 			mejs_rails_fix();
 
-		}, 100);
+		}, 200);
 
 		$(window).resize(function(){
 			setTimeout(mejs_rails_fix, 110);
@@ -46,20 +45,28 @@
 
 	function setup_idle_nexus() {
 
-		setTimeout(idle_nexus, 1000 * 60 * 5);
+		setTimeout(idle_nexus, 1000 * 60 * 2.43);
 
 	}
 
 	function setup_reveal_share() {
 
 		var element = $('.share');
-		element.hide();
+		var header = $(element).find('h4');
+		var container = element.find('.container')
+		
+		header.html('Load Sharing &rarr;');
+		header.addClass('clickable');
+		container.hide();
 
-		setTimeout(function(){
+		header.on('touchstart click', function(event) {
+			container.show('slow');
+			header.html('Sharing');
+			header.removeClass('clickable');
+			element.addClass('opened');
+			event.preventDefault();
 
-			element.show('slow');
-
-		}, 1000 * 10);
+		});
 
 	}
 
@@ -72,7 +79,7 @@
 
 	$(document).ready(function(){
 
-		mejs_rails_fix_setup();
+		setup_mejs_rails_fix();
 		setup_idle_nexus();
 		setup_reveal_share();
 		setup_shownote_clicks();

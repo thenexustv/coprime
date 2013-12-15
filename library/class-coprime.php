@@ -68,12 +68,13 @@ class Coprime {
 	public function get_villain_query($how_many = 3) {
 		$arguments = array(
 	        'post_type' => 'episode',
-	        'posts_per_page' => intval($how_many)
+	        'posts_per_page' => intval($how_many),
+	        'order' => 'DESC'
 	    );
 
 	    $arguments = $this->exclude_fringe($arguments);
 	    $ago = date('y-m-d', strtotime('-1 week'));
-	    $now = date('y-m-d');
+	    $now = date('y-m-d', strtotime('+1 day'));
 
 	    $fn = function($where = '') use ($ago, $now) {
 	    	$where .= "AND post_date >= '$ago' AND post_date < '$now'";
