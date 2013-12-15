@@ -24,7 +24,7 @@
 
         <section id="villain-container" class="<?php echo $villain_class; ?>">
             <div class="villain-wrapper">
-                
+
                 <?php
 
                     while ($villain_how_many-- && $villain_query->have_posts()): $villain_query->the_post();
@@ -35,6 +35,7 @@
                 <?php do_action('in_villain'); ?>
 
             </div>
+            
         </section>
 
         <?php do_action('after_villain'); ?>
