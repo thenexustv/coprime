@@ -29,8 +29,10 @@
 		setTimeout(function(){
 
 			mejs_rails_fix();
-
-		}, 200);
+			mejs_rails_fix();
+			mejs_rails_fix();
+			console.log("initial");
+		}, 100);
 
 		$(window).resize(function(){
 			setTimeout(mejs_rails_fix, 110);

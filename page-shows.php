@@ -16,9 +16,7 @@
 					<?php
 
 						$post_ids = Coprime::get_instance()->get_series_list_query();
-
-						// while ( $query->have_posts() ): $query->the_post();
-
+						
 						foreach ($post_ids as $post_id):
 							$episode = Nexus_Episode::factory($post_id);
 							$series = $episode->get_series();

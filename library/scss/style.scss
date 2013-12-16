@@ -636,6 +636,13 @@ a {
 	.episode-list {
 		list-style: square;
 		font-size: 14px;
+		column-count:2;
+		-webkit-column-count:2;
+		-moz-column-count:2;
+		li {
+			margin-left: 20px;
+			margin-bottom: 5px;
+		}
 	}
 	.related:before {
 		content: ' ';
@@ -796,8 +803,8 @@ a {
 ======================================================
 */
 
-.page #content-container {
-	padding-top: 1em;
+.page-template-page-shows-php #content-container {
+	padding-top: 3em;
 }
 .page.page-template-default .content-wrapper {
 	@include box;

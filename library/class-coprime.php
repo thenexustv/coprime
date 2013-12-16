@@ -93,14 +93,7 @@ class Coprime {
 
 	    return $query;
 	}
-
-	// public function get_villain_propensity() {
-	// 	$arguments = array(
-	//         'post_type' => 'episode',
-	//         'posts_per_page' => 3
-	//     );
-	// }
-
+	
 	public function get_showboard_primary_query($post_ids = array()) {
 		$arguments = array(
 	        'post_type' => 'episode',

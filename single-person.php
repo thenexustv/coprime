@@ -60,7 +60,7 @@
 										<li><a href="<?php echo $episode->get_permalink(); ?>"><?php echo $episode->get_formatted_title(); ?></a></li>
 									<?php endwhile ?>
 									</ul>
-									<?php loop_pagination(); //get_template_part('partials/loop-pagination'); ?>
+									<?php loop_pagination(); ?>
 									<?php endif; $wp_query = $_wp_query; wp_reset_query(); wp_reset_postdata(); ?>
 								</div>
 
