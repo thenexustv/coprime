@@ -39,3 +39,4 @@ Thumbs.db
 # Custom #
 .sass-cache/
 css/
+deploy
