@@ -261,6 +261,8 @@ a {
 }
 
 
+
+
 /*
 ======================================================
 	Episode Content
@@ -278,6 +280,10 @@ a {
 
 .hero-meta .show-series-name {
 	font-size: 2.2em;
+}
+
+.hero-meta {
+	padding: 0 .5em 0 .5em;
 }
 
 .show-series-description {
@@ -430,16 +436,28 @@ a {
 	list-style: none;
 	padding-left: 15px;
 
-	.regular a {
-		margin-left: 3px;
+	li {
+		margin-bottom: 3px;
+	}
+
+	a {
+		margin-left: 5px;
 		padding: 0px 0 0 19px;
-		background: url("../images/rss/04.png") no-repeat 0 50%;
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+	}
+
+	.regular a {
+		background-image: url("../images/icons/feed-orange-32.png");
+
 	}
 	
 	.with-fringe a {
-		margin-left: 3px;
-		padding: 0px 0 0 19px;
-		background: url("../images/rss/49.png") no-repeat 0 50%;
+		background-image: url("../images/icons/feed-black-32.png");
+	}
+
+	.via-itunes a {
+		background-image: url("../images/icons/itunes-podcast-32.png");
 	}
 }
 
@@ -558,9 +576,6 @@ a {
 ======================================================
 */
 .category-meta {font-size: 18px;}
-.archive  {
-
-}
 
 .episode.stand-alone {
 	
@@ -568,7 +583,7 @@ a {
 	@include box;
 
 	.show-albumart {
-		padding: 0em 2em 1em 1em;
+		padding: .5em 2em 1em 1em;
 		float: left;
 	}
 	.show-number {
@@ -596,6 +611,18 @@ a {
 	.person-avatar {
 		float: left;
 		padding: 0 2em 1em 1em;
+	}
+
+	.series-subscribe {
+		h4 {display: inline;}
+		li {
+			display: inline;
+			margin-left: 2em;
+			white-space:nowrap;
+		}
+		.series-subscriptions {
+			display: inline;
+		}
 	}
 
 }
@@ -806,6 +833,51 @@ a {
 .page-template-page-shows-php #content-container {
 	padding-top: 3em;
 }
+
+.page-template-page-shows-php .stand-alone {		
+		@include clearfix;
+		margin-bottom: 1.5em;
+		padding-bottom: 1.5em;
+		border-bottom: 1px solid #ccc;
+		&:last-child {
+			border-bottom: none;
+		}
+}
+
+.page-template-page-shows-php {
+		.show-albumart {
+			padding: 0em 2em 1em 1em;
+			float: left;
+		}
+		.show-number {
+			color: #444;
+			font-size: 14px;
+		}
+		.show-date {
+			color: #666;
+			font-size: 14px;
+		}
+		.series-description {
+			margin-top: 1em;
+			font-size: 16px;
+		}
+
+		.content-section {
+			overflow: hidden;
+		}
+
+		.show-series-name {
+			font-size: 32px;
+		}
+
+		.series-subscribe {
+			@include box;
+			margin: 0 0 1em 1em;
+			float: right;
+		}
+
+}
+
 .page.page-template-default .content-wrapper {
 	@include box;
 }
@@ -816,10 +888,12 @@ a {
 		display: inline;
 		font-size: inherit;
 	}
+	overflow: hidden;
 }
 .show-block {
 	height: 200px;
 }
+
 
 /*
 ======================================================
@@ -874,4 +948,51 @@ a {
 
 .clickable {
 	cursor: pointer;
+}
+
+/*
+======================================================
+	Extras
+======================================================
+*/
+
+@media (max-width: 768px) {
+
+
+	.page-template-page-shows-php {
+		.show-albumart {
+			padding: 0;
+		}
+		.show-albumart img {
+			margin: auto;
+			display: block;
+		}
+		.show-series-name {
+			text-align: center;
+		}
+		.show-albumart {
+			float: none;
+		}
+		.series-subscribe {
+			text-align: center;
+			float: none;
+			margin: 0;
+		}
+
+		.stand-alone {
+			@include grid-column($columns: 12, $center: false);
+		}
+
+	}
+
+	.archive {
+		.series-subscribe {
+			.series-subscriptions, li {
+				display: block;
+				margin-left: 0;
+			}
+			
+		}
+	}
+
 }

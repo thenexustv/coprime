@@ -13,7 +13,6 @@
 			$cp_episode = new Coprime_Episode($episode);
 			$cp_series = new Coprime_Series($series);
 
-
 		?>
 
 		<?php do_action('before_hero'); ?>

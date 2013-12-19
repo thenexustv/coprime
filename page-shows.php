@@ -25,22 +25,38 @@
 							$cp_series = new Coprime_Series($series);
 					?>
 
-					<article id="item-<?php the_ID(); ?>" role="article" class="show-block">
+					<article id="item-<?php the_ID(); ?>" role="article" <?php post_class('stand-alone');?>>
 						
 						<?php do_action('before_in_content'); ?>
 
 						<header class="content-header">
-							<div class="show-albumart"><?php echo $cp_episode->get_series_list_albumart(); ?></div>
-							<h3 class="show-series-name"><?php echo $cp_series->get_series_name(); ?></h3>
+							<div title="View more episodes of <?php echo $series->get_name();?>" class="show-albumart"><?php echo $cp_episode->get_series_list_albumart(); ?></div>
+							<h2 title="View more episodes of <?php echo $series->get_name();?>" class="show-series-name"><?php echo $cp_series->get_series_name(); ?></h2>
 							
-							<?php if ( $episode->is_new() ): ?>
-							<div class="series-status">
-								<?php echo $cp_episode->get_is_new(); ?> &blacksquare; <h3 class="show-title"><?php echo $cp_episode->get_formatted_title(); ?></h3>
-							</div>
-							<?php endif; ?>							
-
 							<?php do_action('in_content_header'); ?>
 						</header>
+
+						<aside class="series-subscribe">
+							<h4>Subscribe</h4>
+							<?php echo $cp_series->get_series_subscriptions(); ?>
+						</aside>
+
+						<section class="content-section">	
+
+
+							<div class="show-description"><?php echo $cp_series->get_series_description(); ?></div>
+
+							<div class="series-status">
+								<?php if ($episode->is_new()): ?>
+								<?php echo $cp_episode->get_is_new(); ?> &blacksquare;
+								<?php endif; ?>
+								<h3 class="show-title"><?php echo $cp_episode->get_formatted_title(); ?></h3>
+							</div>
+							
+
+							<?php do_action('in_content_section'); ?>
+						</section>
+
 
 					</article>
 
