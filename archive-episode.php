@@ -17,11 +17,23 @@
 						</div>
 
 					<?php elseif ( is_category() ): ?>
-						<h1 class="loop-title archive-title"><?php single_cat_title(); ?></h1>
+
+						<?php
+							$series = Nexus_Series::factory(get_query_var('cat'));
+							$cp_series = new Coprime_Series($series);
+						?>
+
+						<h1 class="loop-title archive-title"><?php echo $cp_series->get_series_name(); ?></h1>
 
 						<div class="loop-meta archive-meta category-meta">
-							<?php echo category_description(); ?>
+							<?php echo $cp_series->get_series_description(); ?>
 						</div>
+
+						<aside class="series-subscribe">
+							<h4>Subscribe</h4>
+							<?php echo $cp_series->get_series_subscriptions(); ?>
+						</aside>
+
 					<?php endif; ?>
 
 				</div>
