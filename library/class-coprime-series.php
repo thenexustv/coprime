@@ -48,12 +48,18 @@ class Coprime_Series {
 		$name = $this->series->get_name();
 		$feed = $this->series->get_feed_permalink();
 
-		$template = "<a href=\"{$feed}\">{$name}</a>";
+		$template = "<a title=\"Subscribe via the feed just the {$name} episodes\" href=\"{$feed}\">{$name}</a>";
 		$output = $this->wrap($template, 'regular', 'li');
 
 		if ( 'tf' != $this->series->get_slug() ) {
-			$template = "<a href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
+			$template = "<a title=\"Subscribe via the feed to both the {$name} and associated fringe epsidoes\" href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
 			$output = $output . $this->wrap($template, 'with-fringe', 'li');
+		}
+
+		$itunes_url = $this->series->get_itunes_subscription_url();
+		if ( '' != $itunes_url ) {
+			$template = "<a title=\"Subscribe via iTunes\" href=\"{$itunes_url}\">{$name}</a>";
+			$output = $output . $this->wrap($template, 'via-itunes', 'li');
 		}
 
 		return $this->wrap($output, 'series-subscriptions', 'ul');

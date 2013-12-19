@@ -430,16 +430,26 @@ a {
 	list-style: none;
 	padding-left: 15px;
 
+	li {
+		margin-bottom: 3px;
+	}
+
 	.regular a {
-		margin-left: 3px;
+		margin-left: 5px;
 		padding: 0px 0 0 19px;
-		background: url("../images/rss/04.png") no-repeat 0 50%;
+		background: url("../images/icons/feed-orange-16.png") no-repeat;
 	}
 	
 	.with-fringe a {
-		margin-left: 3px;
+		margin-left: 5px;
 		padding: 0px 0 0 19px;
-		background: url("../images/rss/49.png") no-repeat 0 50%;
+		background: url("../images/icons/feed-black-16.png") no-repeat;
+	}
+
+	.via-itunes {
+		margin-left: 5px;
+		padding: 0px 0 0 19px;
+		background: url("../images/icons/itunes-podcast-16.png") no-repeat;
 	}
 }
 
