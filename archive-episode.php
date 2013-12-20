@@ -19,7 +19,7 @@
 					<?php elseif ( is_category() ): ?>
 
 						<?php
-							$series = Nexus_Series::factory(get_query_var('cat'));
+							$series = Nexus_Series::factory();
 							$cp_series = new Coprime_Series($series);
 						?>
 

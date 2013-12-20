@@ -6,12 +6,17 @@
 	<?php do_action('before_footer'); ?>
 
 	<footer id="footer-container" role="contentinfo">
+
+		<?php get_template_part('partials/footer-area') ?>
+
 		<div class="footer-inner">
 
 			<div class="endpoint">
-				<p class="source-org copyright">&copy; 2013</p>
+				<p class="source-org copyright">&copy; 2013 &blacksquare; <a href="<?php echo home_url(); ?>">The Nexus</a></p>
 			</div>
 			<?php do_action('in_footer'); ?>
+
+			<div class="nx-end"><span></span></div>
 
 		</div>
 	</footer>

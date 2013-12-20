@@ -17,6 +17,8 @@ class Coprime {
 		add_theme_support('menus');
 		$this->register_menus();
 
+		add_action('widgets_init', array($this, 'register_sidebars'));
+
 		// Load public-facing style sheet and JavaScript.
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
@@ -49,6 +51,26 @@ class Coprime {
 		add_action('after_identity', array($this, 'register_primary_menu'));
 	}
 
+	public function register_sidebars() {
+		$footer_area = array(
+			'name' => 'Footer Area',
+			'id' => 'footer-area',
+			'description' => 'Contains widgets in the footer',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>'
+		);
+		register_sidebar($footer_area);
+	}
+
+	public function get_widget_count($id = '') {
+		if ( $id == '' ) return 0;
+		$sidebars = wp_get_sidebars_widgets();
+		if (!isset($sidebars[$id])) return 0;
+		return count($sidebars[$id]);
+	}
+
 	public function register_primary_menu() {
 		$settings = array(
 			'menu' => 'primary',
@@ -64,6 +86,19 @@ class Coprime {
 		return $classes;
 	}
 
+	public function get_single_recent_episode() {
+		$arguments = array(
+	        'post_type' => 'episode',
+	        'posts_per_page' => 1,
+	        'order' => 'DESC'
+	    );
+	    $arguments = $this->exclude_fringe($arguments);
+	    $query = new WP_Query($arguments);
+	    $posts = $query->get_posts();
+
+	    return $posts[0];
+
+	}
 
 	public function get_villain_query($how_many = 3) {
 		$arguments = array(
