@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-	color: #202020;
+	color: #303030;
 	text-decoration: none;
 	&:hover {
 		color: #383838;
@@ -36,18 +36,14 @@ a {
 		color: #201C1C;
 	}
 }
+      
+
 
 #galaxy {
 	background-color: #e5e5e5;
 }
 
-/*
-======================================================
-	Import Layout 
-======================================================
-*/
 
-@import "_layout.scss";
 
 /*
 ======================================================
@@ -322,22 +318,6 @@ a {
 		margin-bottom: 1em;
 	}
 
-	.content-section {
-/* 		&:before {
-			// hr break line
-			content: ' ';
-			width: 100%;
-			margin: auto;
-			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
-			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
-			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
-			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
-			height: 3px;
-			display: block;
-			margin: 15px auto 15px auto;
-		} */
-	}
-
 	.content-footer {
 		margin-top: 20px;
 		margin-bottom: 20px;
@@ -565,10 +545,88 @@ a {
 */
 
 #footer-container {
+	margin-top: 2em;
 	color: #666;
+
+	a {
+		color: #ddd;
+		text-decoration: none;
+		&:visited {
+			color: #ccc;
+		}
+		&:hover {
+
+		}
+	}
+
+}
+
+#footer-container .footer-inner {
 	font-size: 13px;
 	text-align: center;
+	a {color: #777;}
 }
+
+.footer-area-container {
+	color: #bbb;
+	font-size: 14px;
+
+	h4 {
+		color: #ccc;
+		margin-bottom: .5em;
+	}
+
+	.widget {
+		margin-bottom: 1em;
+	}
+
+	.widget_text {
+
+	}
+
+	.widget_nav_menu {
+
+		ul {
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			column-count: 2;
+
+			margin-top: 0px;
+			padding: 0;
+			list-style: none;
+		}
+
+	}
+
+}
+
+@-webkit-keyframes nxhue {  
+   0% { -webkit-filter: hue-rotate(0deg); }  
+   50% { -webkit-filter: hue-rotate(180deg); }  
+   100% { -webkit-filter: hue-rotate(360deg); } 
+}
+ 
+.nx-end {
+
+	span {
+		opacity: .3;
+		display: block;
+		content: " ";
+		width: 64px;
+		height: 64px;
+		background-size: 64px 64px;
+		// background-image: url("../images/nx-logo-color.png");
+		background-image: url("../images/nx-logo-grayscale.png");
+		margin: 0 auto 3em auto;
+	}
+
+	span.idle {
+		-webkit-animation: nxhue 15s alternate infinite;
+	}
+
+	-webkit-filter: blur(2px); 
+}
+
 
 /*
 ======================================================
@@ -653,7 +711,7 @@ a {
 		}
 	}
 	.person-content {
-		// overflow: hidden;
+		overflow: hidden;
 		line-height: 1.3em;
 	}
 	.episodes-with {
@@ -814,14 +872,28 @@ a {
 	@include box;
 	padding-bottom: 5em;
 }
+
+.error404 .content-section {
+	font-size: 20px;
+	text-align: center;
+}
+.not-found-notice {
+	font-weight: bold;
+}
+
 #kawaii-error {
-	background-image: url('../images/kawaii-error.png');
-	display: block;
-	width: 600px;
-	height: 594px;
-	margin: auto;
-	border: 5px solid #fff;
-	@include box-shadow(1px 1px 10px #999);
+	
+	img {
+		width: 80%;	
+		display: block;
+		margin: 0 auto;
+		padding: 10px;
+		border: 5px solid #fff;
+		@include box-shadow(1px 1px 10px #999);
+	}	
+
+	
+
 }
 
 /*
@@ -946,13 +1018,41 @@ a {
 ======================================================
 */
 
+
 .clickable {
 	cursor: pointer;
 }
 
+// * {
+// 	outline: 1px solid red;
+// }
+
+// to handle form styles
+.wpcf7 {
+	input[type="text"], input[type="email"], select {
+		padding: 0.15em;
+		width: 100%;
+		font-size: 24px;
+		border: 1px solid #ccc;
+		&:focus {
+			border: 1px solid #aaa;
+		}
+	}
+	textarea {
+		border: 1px solid #ccc;
+		font-size: 22px;
+		padding: 0.15em;
+		width: 100%;
+	}
+	p {
+		font-size: 26px;
+	}
+}
+
+
 /*
 ======================================================
-	Extras
+	Responsive styles (for design)
 ======================================================
 */
 
@@ -996,3 +1096,11 @@ a {
 	}
 
 }
+
+/*
+======================================================
+	Responsive styles (for layout)
+======================================================
+*/
+
+@import "_layout.scss";
