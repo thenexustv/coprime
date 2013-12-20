@@ -27,11 +27,7 @@
 		}, 250);
 
 		setTimeout(function(){
-
 			mejs_rails_fix();
-			mejs_rails_fix();
-			mejs_rails_fix();
-			console.log("initial");
 		}, 100);
 
 		$(window).resize(function(){
@@ -41,8 +37,10 @@
 	}
 
 	function idle_nexus() {
-		var element = $('.nexus-title');
-		element.addClass('idle');
+		var header = $('.nexus-title');
+		// var footer = $('.nx-end span');
+		header.addClass('idle');
+		// footer.addClass('idle');
 	}
 
 	function setup_idle_nexus() {
