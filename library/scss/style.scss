@@ -375,6 +375,9 @@ a {
 	.content-section {
 		padding: 0px 10px 0 15px;
 	}
+	.content-section a:visited {
+		color: #800000;
+	}
 	.content-footer {
 		margin-top: 3em;
 		padding: 0 10px 10px 10px;
@@ -528,7 +531,7 @@ a {
 }
 
 .baseline {
-	padding: 0 2em 0 2em;
+	padding: .5em 2em 0 2em;
 	@include clearfix;
 }
 .all-shows {
@@ -1104,3 +1107,6 @@ a {
 */
 
 @import "_layout.scss";
+
+
+@import "_print.scss";
