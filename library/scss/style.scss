@@ -376,7 +376,7 @@ a {
 		padding: 0px 10px 0 15px;
 	}
 	.content-section a:visited {
-		color: #800000;
+		color: #270000;
 	}
 	.content-footer {
 		margin-top: 3em;
@@ -1021,14 +1021,14 @@ a {
 ======================================================
 */
 
+.admin-statistics {
+	margin: 1em;
+	color: #ccc;
+}
 
 .clickable {
 	cursor: pointer;
 }
-
-// * {
-// 	outline: 1px solid red;
-// }
 
 // to handle form styles
 .wpcf7 {
