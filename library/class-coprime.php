@@ -206,8 +206,8 @@ class Coprime {
 	public function admin_statistics() {
 		$timer = timer_stop(0, 2);
 		$queries = get_num_queries();
-		$content = "{$timer} seconds | {$queries} queries";
-		$template = "<div style=\"margin: 1em;\" class=\"statistics\">{$content}</div>";
+		$content = "{$timer} seconds &blacksquare; {$queries} queries";
+		$template = "<div class=\"admin-statistics\">{$content}</div>";
 		echo $template;
 	}
 
