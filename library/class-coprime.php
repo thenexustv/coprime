@@ -101,6 +101,14 @@ class Coprime {
 	}
 
 	public function get_villain_query($how_many = 3) {
+		
+        $villain_map = array(
+            'dictator' => 1,
+            'diarchy' => 2,
+            'triumvirate' => 3
+        );
+        $mode = 'triumvirate';
+
 		$arguments = array(
 	        'post_type' => 'episode',
 	        'posts_per_page' => intval($how_many),
@@ -108,7 +116,7 @@ class Coprime {
 	    );
 
 	    $arguments = $this->exclude_fringe($arguments);
-	    $ago = date('y-m-d', strtotime('-1 week'));
+	    $ago = date('y-m-d', strtotime('-7 days'));
 	    $now = date('y-m-d', strtotime('+1 day'));
 
 	    $fn = function($where = '') use ($ago, $now) {
@@ -120,13 +128,21 @@ class Coprime {
 	    $query = new WP_Query($arguments);
 	    remove_filter('posts_where', $fn);
 
-	    // is there at least a single post?
-	    if ( $query->post_count == 0 ) {
-	    	$query = new WP_Query($arguments);
-	    	return $query;
+	    // decide on the mode
+	    foreach ($villain_map as $key => $value) {
+	    	if ($query->post_count == $value) {
+	    		$mode = $key;
+	    		break;
+	    	}
 	    }
 
-	    return $query;
+	    // if there are no new posts, perform a new query with posts in it, unfortunately
+	    if ( $query->post_count == 0 ) {
+	    	$query = new WP_Query($arguments);
+	    	return array('mode' => $mode, 'query' => $query);
+	    }
+
+	    return array('mode' => $mode, 'query' => $query);
 	}
 	
 	public function get_showboard_primary_query($post_ids = array()) {

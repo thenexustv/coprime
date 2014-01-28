@@ -8,26 +8,20 @@
 
         <?php do_action('before_villain'); ?>
 
-        <?php 
-
-        $villain_how_many = 3;
-        $villain_query = Coprime::get_instance()->get_villain_query($villain_how_many);
+        <?php
+        $villain_data = Coprime::get_instance()->get_villain_query();
+        $villain_query = $villain_data['query'];
+        $villain_mode = $villain_data['mode'];
         $villain_episodes = array();
-        $villain_class = 'triumvirate';
-
-        if ( $villain_query->post_count != $villain_how_many ) {
-            $villain_how_many = 1;
-            $villain_class = 'dictator';
-        }
 
         ?>
 
-        <section id="villain-container" class="<?php echo $villain_class; ?>">
+        <section id="villain-container" class="<?php echo $villain_mode; ?>">
             <div class="villain-wrapper">
 
                 <?php
 
-                    while ($villain_how_many-- && $villain_query->have_posts()): $villain_query->the_post();
+                    while ($villain_query->have_posts()): $villain_query->the_post();
                     $villain_episodes[] = get_the_ID();
                     get_template_part('partials/villain');
                     endwhile; ?>

@@ -11,6 +11,12 @@
 	margin-bottom: 20px;
 }
 
+@mixin transition-action($prop, $time) {
+	transition: $prop $time;
+	-moz-transition: $prop $time;
+	-webkit-transition: $prop $time;
+	-o-transition: $prop $time;
+}
 
 // http://paulirish.com/2012/box-sizing-border-box-ftw/
 // * {
