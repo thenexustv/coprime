@@ -760,12 +760,13 @@ a {
 	@include clearfix;
 }
 
-#villain-container.dictator {
+#villain-container.dictator,
+#villain-container.diarchy {
 	background-color: transparent;
 	@include box-shadow(none);
 }
 
-.dictator {
+.dictator, .diarchy {
 	.villain {
 		margin: 30px auto;
 		position: relative;
