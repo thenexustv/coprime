@@ -20,13 +20,20 @@ class Coprime_Episode {
 		return "<{$tag} class=\"{$class_string}\">$content</{$tag}>";
 	}
 
-	public function get_title() {
-		$title = $this->episode->get_title();
+	private function get_title_length_class($title) {
 		$class = 'regular';
 
 		$length = strlen($title);
-		if ( $length > 33 ) {$class = 'long';}
-		else if ($length > 66) {$class = 'epic-long';}
+		if ( $length > 66 ) {$class = 'long';}
+		else if ($length > 33) {$class = 'epic-long';}
+
+		return $class;
+	}
+
+	public function get_title() {
+		$title = $this->episode->get_title();
+
+		$class = $this->get_title_length_class($title);		
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
 		return $this->wrap($template, 'episode-title');
@@ -34,11 +41,8 @@ class Coprime_Episode {
 
 	public function get_formatted_title() {
 		$title = $this->episode->get_formatted_title();
-		$class = 'regular';
-
-		$length = strlen($title);
-		if ( $length > 33 ) {$class = 'long';}
-		else if ($length > 66) {$class = 'epic-long';}
+	
+		$class = $this->get_title_length_class($title);
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
 		return $this->wrap($template, array('episode-title', 'episode-formatted-title'));
@@ -116,7 +120,7 @@ class Coprime_Episode {
 		$raw = $this->episode->get_posted_date('r');
 		$ago = "$diff ago";
 
-		$template = "<time datetime=\"{$raw}\">{$date} &blacksquare; {$ago}</time>";
+		$template = "<time datetime=\"{$raw}\">{$date} &blacksquare; <span class=\"ago\">{$ago}</span></time>";
 
 		$variables = array('diff', 'date', 'raw', 'ago');
 		$values = compact($variables);
@@ -173,7 +177,7 @@ class Coprime_Episode {
 		if ( $image )
 			$template = "<a href=\"{$this->episode->get_permalink()}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
-			$template = "<div><!-- --></div>";
+			$template = "<div><!-- the hero is missing --></div>";
 		
 		return $this->wrap($template, 'episode-albumart', 'div');
 	}
