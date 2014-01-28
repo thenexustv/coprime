@@ -61,6 +61,7 @@
 #showboard .episode {
 	@include grid-column(12);
 	text-align: center;
+	@include transition-action(width, 0.25s);
 }
 
 .footer-area-container {
@@ -78,9 +79,11 @@
 	width: 100%;
 	float: none;
 	height: 250px;
+	@include transition-action(width, 0.25s);
 }
 
-.dictator .villain {
+.dictator .villain,
+.diarchy .villain {
 	width: 90%;
 	float: none;
 	height: 250px;
@@ -153,6 +156,9 @@
 		height: 420px;
 	}
 
+	.diarchy .villain {
+		height: 320px;
+	}
 
 }
 
@@ -167,5 +173,17 @@
 		float: none;
 		height: 420px;
 	}
+
+	.diarchy .villain {
+		@include grid-column(5);
+		height: 320px;
+	}
+	.diarchy .villain:first-child {
+		@include grid-column(5, $push: 1);
+	}
+	.diarchy .villain:last-child {
+		@include grid-column(5, $push: 1, $collapse: true);
+	}
+
 
 }
