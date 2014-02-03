@@ -8,6 +8,6 @@
 <div class="subscribe">
 	<div class="box">
 		<h4>Subscribe</h4>
-		<?php echo $cp_series->get_series_subscriptions(); ?>
+		<?php echo $cp_series->get_series_subscriptions($episode); ?>
 	</div>
 </div>
