@@ -44,15 +44,17 @@ class Coprime_Series {
 		return $this->wrap($template, 'series-name');
 	}
 
-	public function get_series_subscriptions() {
+	public function get_series_subscriptions($episode = null) {
 		$name = $this->series->get_name();
 		$feed = $this->series->get_feed_permalink();
 
-		$template = "<a title=\"Subscribe via the feed just the {$name} episodes\" href=\"{$feed}\">{$name}</a>";
+		$is_fringe = ('tf' == $this->series->get_slug());
+
+		$template = "<a title=\"Subscribe via the feed of {$name} episodes\" href=\"{$feed}\">{$name}</a>";
 		$output = $this->wrap($template, 'regular', 'li');
 
-		if ( 'tf' != $this->series->get_slug() ) {
-			$template = "<a title=\"Subscribe via the feed to both the {$name} and associated fringe epsidoes\" href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
+		if ( !$is_fringe ) {
+			$template = "<a title=\"Subscribe via the feed of both the {$name} and associated Fringe epsidoes\" href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
 			$output = $output . $this->wrap($template, 'with-fringe', 'li');
 		}
 
@@ -62,7 +64,21 @@ class Coprime_Series {
 			$output = $output . $this->wrap($template, 'via-itunes', 'li');
 		}
 
+		if ( $episode && defined('WPCF7_VERSION') && !$is_fringe ) {
+			$contact_url = $this->get_contact_url($episode);
+			$template = "<a title=\"Send Feedback to {$name}\" href=\"{$contact_url}\">Contact <em>{$name}</em></a>";
+			$output = $output . $this->wrap($template, 'send-feedback', 'li');
+		}
+
 		return $this->wrap($output, 'series-subscriptions', 'ul');
+	}
+
+	private function get_contact_url($episode) {
+		$path = home_url('contact');
+		$show = sanitize_title($this->series->get_name());
+		$number = $episode->get_episode_number();
+		$path = $path . "?show={$show}&number={$number}"; 
+		return $path;
 	}
 
 }
