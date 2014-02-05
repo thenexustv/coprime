@@ -443,13 +443,6 @@ a {
 		background-image: url("../images/icons/itunes-podcast-32.png");
 	}
 
-	.send-feedback {
-		margin-top: 2em;
-	}
-	.send-feedback a {
-		background-image: url("../images/icons/feedback-mail-32.png");
-	}
-
 }
 
 .sidebar {
@@ -457,6 +450,22 @@ a {
 		h3, h4 {
 			margin-bottom: 10px;
 		}
+	}
+}
+
+.forward-contact {
+	// text-align: center;
+	font-size: 13px;
+	.send-feedback {
+		// padding-left: 15px;
+		margin-top: 3em;
+	}
+	.send-feedback a {
+		margin-left: 5px;
+		padding: 0px 0 0 19px;
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+		background-image: url("../images/icons/feedback-mail-32.png");
 	}
 }
 
