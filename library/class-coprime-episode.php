@@ -175,7 +175,7 @@ class Coprime_Episode {
 		$image = $this->episode->get_albumart();
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- the hero is missing --></div>";
 		
@@ -186,7 +186,7 @@ class Coprime_Episode {
 		$image = $this->episode->get_albumart(array('size' => 'thumbnail'));
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- --></div>";
 		
@@ -200,7 +200,7 @@ class Coprime_Episode {
 		if ( empty($url) ) $url = $this->episode->get_permalink();
 
 		if ( $image )
-			$template = "<a href=\"{$url}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$url}\"><img alt=\"The {$this->episode->get_series_name()} series\"src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- --></div>";
 		
@@ -211,6 +211,15 @@ class Coprime_Episode {
 	public function get_villain_albumart() {
 		$image = $this->episode->get_albumart(array('size' => 'large'));
 		return $image['url'];
+	}
+
+	public function get_contact_link() {
+		if ( defined('WPCF7_VERSION') && $this->episode->is_fringe() ) return '';
+		$name = $this->episode->get_series_name();
+		$contact_url = $this->episode->get_contact_url();
+		$template = "<a title=\"Send Feedback to {$name}\" href=\"{$contact_url}\">Contact <em>{$name}</em></a>";
+		$output = $this->wrap($template, 'send-feedback', 'span');
+		return $output;
 	}
 
 }

@@ -64,21 +64,7 @@ class Coprime_Series {
 			$output = $output . $this->wrap($template, 'via-itunes', 'li');
 		}
 
-		if ( $episode && defined('WPCF7_VERSION') && !$is_fringe ) {
-			$contact_url = $this->get_contact_url($episode);
-			$template = "<a title=\"Send Feedback to {$name}\" href=\"{$contact_url}\">Contact <em>{$name}</em></a>";
-			$output = $output . $this->wrap($template, 'send-feedback', 'li');
-		}
-
 		return $this->wrap($output, 'series-subscriptions', 'ul');
-	}
-
-	private function get_contact_url($episode) {
-		$path = home_url('contact');
-		$show = sanitize_title($this->series->get_name());
-		$number = $episode->get_episode_number();
-		$path = $path . "?show={$show}&number={$number}"; 
-		return $path;
 	}
 
 }
