@@ -214,7 +214,7 @@ class Coprime_Episode {
 	}
 
 	public function get_contact_link() {
-		if ( defined('WPCF7_VERSION') && $this->episode->is_fringe() ) return 'xx';
+		if ( defined('WPCF7_VERSION') && $this->episode->is_fringe() ) return '';
 		$name = $this->episode->get_series_name();
 		$contact_url = $this->episode->get_contact_url();
 		$template = "<a title=\"Send Feedback to {$name}\" href=\"{$contact_url}\">Contact <em>{$name}</em></a>";
