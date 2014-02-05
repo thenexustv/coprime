@@ -175,7 +175,7 @@ class Coprime_Episode {
 		$image = $this->episode->get_albumart();
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- the hero is missing --></div>";
 		
@@ -186,7 +186,7 @@ class Coprime_Episode {
 		$image = $this->episode->get_albumart(array('size' => 'thumbnail'));
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- --></div>";
 		
@@ -200,7 +200,7 @@ class Coprime_Episode {
 		if ( empty($url) ) $url = $this->episode->get_permalink();
 
 		if ( $image )
-			$template = "<a href=\"{$url}\"><img src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$url}\"><img alt=\"The {$this->episode->get_series_name()} series\"src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- --></div>";
 		
