@@ -146,7 +146,7 @@
 				time = 1;
 			}
 
-			since = (time == 1 ? periods[key][0] : periods[key][0]).replace('%s', time);
+			since = (time == 1 ? periods[key][0] : periods[key][1]).replace('%s', time);
 			return false; // jquery break
 
 		});
