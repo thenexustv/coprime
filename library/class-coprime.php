@@ -32,14 +32,14 @@ class Coprime {
 
 	public function enqueue_styles() {
 		wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700');
-		wp_register_style('coprime', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
+		wp_register_style('coprime', get_stylesheet_directory_uri() . '/resources/css/build/style.css', array(), '', 'all' );
 
 		wp_enqueue_style('open-sans');
 		wp_enqueue_style('coprime');
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'coprime-script', get_stylesheet_directory_uri() . '/library/js/script.js', array( 'jquery' ) );
+		wp_enqueue_script( 'coprime-script', get_stylesheet_directory_uri() . '/resources/js/build/main.js', array( 'jquery' ) );
 	}
 
 	public function register_menus() {

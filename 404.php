@@ -30,7 +30,7 @@
 							</div>
 
 							<div id="kawaii-error">
-								<img title="404" src="<?php echo get_template_directory_uri() . '/library/images/kawaii-error.png'; ?>" />
+								<img title="404" src="<?php echo get_template_directory_uri() . '/resources/images/kawaii-error.png'; ?>" />
 							</div>
 
 							<p>Sorry, we stuttered.</p>

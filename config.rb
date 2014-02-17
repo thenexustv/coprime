@@ -8,13 +8,15 @@ require "zurb-foundation"
 
 #########
 # 1. Set this to the root of your project when deployed:
-http_path = "/"
+project_type = :stand_alone
 
+http_path = "/"
 # 2. probably don't need to touch these
-css_dir = "../css"
-sass_dir = "./"
-images_dir = "../images"
-javascripts_dir = "../js"
+css_dir = "resources/css/build"
+sass_dir = "resources/css/source"
+images_dir = "resources/images"
+javascripts_dir = "resources/js"
+fonts_dir = "resources/fonts"
 environment = :development
 relative_assets = true
 
