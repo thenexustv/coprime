@@ -179,21 +179,15 @@
 
 		elements.each(function(index, element){
 
-			console.log("running");
-
 			var topic = $(element).find('.your-recipient');
 			var body = $(element).find('.your-message textarea');
 
 			if ( $.isEmptyObject(topic) || $.isEmptyObject(body) ) return false;
 
-			console.log("running 2");
-
 			var query = window.location.search;
 			var obj = $.parseParams(query);
 			
 			if ( !obj.show || !obj.number ) return false;
-
-			console.log("running 3");
 
 			var show = null;
 			topic.find('option').each(function(i, el){
