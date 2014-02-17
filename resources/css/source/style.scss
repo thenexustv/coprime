@@ -1,0 +1,1130 @@
+@import "normalize";
+@import "fonts";
+
+@import "settings";
+@import "foundation/components/global";
+@import "foundation/components/grid";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+
+@import "mixins";
+
+* { @include box-sizing(border-box); }
+
+
+html {
+	background: #222;
+}
+
+body {
+	color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #303030;
+	text-decoration: none;
+	&:hover {
+		color: #383838;
+		text-decoration: underline;
+	}
+	&:visited {
+		color: #201C1C;
+	}
+}
+      
+
+
+#galaxy {
+	background-color: #e5e5e5;
+}
+
+
+
+/*
+======================================================
+	Header / Identity / Primary Menu 
+======================================================
+*/
+
+#header-container {
+	color: #fff;
+	border-bottom: 1px solid #222;
+	padding-bottom: 10px;
+	// box-shadow: inset 0 -5px 10px 1px rgba(200,200,200,.2); // dark
+	// box-shadow: inset -5px -5px 10px 1px rgba(255, 255, 255, 0.2); // light
+	overflow: hidden;
+}
+.header-wrapper {
+	padding-top: 10px;
+}
+
+/* === site title === */
+
+#site-title, #site-description {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 36px;
+  line-height: 22px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  margin: 0;
+  // padding: 0;
+}
+
+#site-title {
+  // border: 1px solid #f00;
+  font-size: 62px;
+  line-height: 40px;
+  font-family: 'LeagueGothicRegular', Helvetica, Arial, san-serif;
+  font-weight: normal;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:after {
+    content: "";
+    font-size: 16px;
+    top: -2.1em;
+    position: relative;
+    line-height: 0px;
+    font-weight: normal;
+    text-transform: lowercase;
+  }
+
+}
+
+.small-identity {
+	#site-title {
+		font-size: 48px;
+	}
+	.nexus-title a:before {
+		width: 40px;
+		height: 40px;
+		background-size: 40px 40px;
+	}
+	#site-description {
+		display: none;
+	}
+	#primary-menu {
+		margin-top: 15px;
+	}
+}
+
+#site-description {
+  margin-top: 2px;
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: normal;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.nexus-title a {
+	display: block;
+	&:before {
+		content: " ";
+	    width: 64px;
+	    height: 64px;
+	    background-size: 64px 64px;
+	    background-image: url('../../images/nx-logo-grayscale.png');
+	    display: inline-block;
+	    position: relative;
+      	top: 2px;
+      	margin-right: 10px;
+      	text-align: center;
+	}
+}
+
+#header-container:hover {
+  	.nexus-title a:before {
+    	background-image: url('../../images/nx-logo-color.png');
+	}
+}
+
+
+
+// #site-logo {
+//   float: left;
+//   position: relative;
+//   top: -5px;
+//   padding-right: 10px;
+  
+
+//   .logo {
+//     width: 64px;
+//     height: 64px;
+//     background-size: 64px 64px;
+//     background-image: url('../images/nx-logo-grayscale.png');
+//     display: block;
+//   }
+
+// }
+
+// #header-container:hover {
+//   #site-logo .logo {
+//     background-image: url('../images/nx-logo-color.png');
+//   }
+// }
+
+@-webkit-keyframes logo-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+// #site-logo.idle {
+//   .logo {
+//     -webkit-transform: scale(.9);
+//   }
+//   -webkit-animation-name:             logo-rotate; 
+//   -webkit-animation-duration:         30s; 
+//   -webkit-animation-iteration-count:  infinite;
+//   -webkit-animation-timing-function:  linear;
+// }
+.nexus-title.idle a:before {
+	-webkit-animation-name:             logo-rotate; 
+	-webkit-animation-duration:         30s; 
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-animation-timing-function:  linear;	
+}
+
+#primary-menu {
+	
+	font-size: emCalc(13px);
+	margin-top: 13px; // align the menu with the middle of the nexus letters
+
+	a {
+		color: #bbb;
+		text-decoration: none;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+	}
+	a:hover {
+		color: #fff;
+		text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	li {
+		text-transform: uppercase;
+		display: inline;
+		margin-left: 15px;
+		letter-spacing: 1px;
+	}
+
+
+}
+
+/*
+======================================================
+	Hero
+======================================================
+*/
+
+#content-container {
+	padding: 1em 0 2em 0;
+}
+
+#villain-container {
+	color: #999999;
+}
+
+#hero-container {
+	// background: #e5e5e5;
+	background: #f5f5f5;
+	padding: 20px 0 20px 0;
+	box-shadow: 0px 1px 10px rgba(50, 50, 50, 0.15);
+}
+
+.single-episode .hero-meta {
+	font-family: 'Open Sans', sans-serif;
+	text-shadow: 0 1px 1px #ddd;
+	font-size: 16px;
+	margin-top: 10px;
+	line-height: 26px;
+}
+
+
+
+
+/*
+======================================================
+	Episode Content
+======================================================
+*/
+
+.show-number, .show-date {
+	text-shadow: 1px 2px 2px white;
+}
+
+.show-series-name,
+.show-title {
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.hero-meta .show-series-name {
+	font-size: 2.2em;
+}
+
+.hero-meta {
+	padding: 0 .5em 0 .5em;
+}
+
+.show-series-description {
+	.long {
+		font-size: 14px;
+		line-height: 22px;
+	}
+	.short {
+		font-size: 18px;
+		line-height: 28px;
+	}
+}
+
+// general non-class based styles go here
+.single-episode .episode {
+
+	font-size: 13px;
+
+	ul {
+		list-style-type: square;
+		margin: 5px 0 10px 0;
+		padding-left: 20px;
+		padding-right: 10px;
+	}
+
+	li {
+		margin-bottom: 2px;
+	}
+
+
+}
+
+.single-episode {
+	
+	.content-header {
+		margin-bottom: 1em;
+	}
+
+	.content-footer {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.content-footer .navigation {
+		font-size: 11px;
+		@include clearfix;
+	}
+	.content-footer .next {
+		float: right;
+	}
+	.content-footer .previous {
+		float: left;
+	}
+
+	.show-title {
+		font-size: 2.2em;
+	}
+
+	.show-number, .show-date {
+		font-size: 13px;
+		display: inline;
+		color: #555;
+	}
+
+	.show-description {
+
+		margin: 10px 0 10px 0;
+		padding: 10px 15px 10px 15px;
+		-webkit-border-radius: 0 0 2px 2px;
+		border-radius: 0 0 2px 2px;
+
+		line-height: 1.6em;
+		font-size: 1.1em;
+
+		background-color: #f6f6f6;
+		color: #444;
+		border-top: 1px solid rgba(0,0,0,.05);
+		border-bottom: 1px solid rgba(0,0,0,.09);
+	}
+
+
+	.episode .box {
+		@include box(.20);
+		padding: 0; // turn off the padding from the box
+	}
+
+	.show-title,
+	.show-meta {
+		padding: 0px 10px 0 10px;
+	}
+	.show-title {
+		padding: 10px 10px 0 10px;
+	}
+	.content-section {
+		padding: 0px 10px 0 15px;
+	}
+	.content-section a:visited {
+		color: #270000;
+	}
+	.content-footer {
+		margin-top: 3em;
+		padding: 0 10px 10px 10px;
+	}
+
+	.sidebar .box {
+		@include box();
+	}
+
+	.hero-album-art img {
+		display: block;
+		margin: auto;
+		@include box-shadow(1px 2px 20px rgba(0, 0, 0, 0.85));
+		border: 6px solid #fff;
+		border-radius: 2px;
+	}
+
+}
+
+.episode-new {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #f00;
+}
+
+.episode-download-meta {
+	font-size: 11px;
+	padding: 2px 15px 0 15px;
+	color: #444;
+	margin-bottom: 15px;
+}
+.show-download {
+	display: block;
+	float: right;
+}
+
+.series-subscriptions {
+	font-size: 14px;
+	list-style: none;
+	padding-left: 15px;
+
+	li {
+		margin-bottom: 3px;
+	}
+
+	a {
+		margin-left: 5px;
+		padding: 0px 0 0 19px;
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+	}
+
+	.regular a {
+		background-image: url("../../images/icons/feed-orange-32.png");
+
+	}
+	
+	.with-fringe a {
+		background-image: url("../../images/icons/feed-black-32.png");
+	}
+
+	.via-itunes a {
+		background-image: url("../../images/icons/itunes-podcast-32.png");
+	}
+
+}
+
+.sidebar {
+	.share.opened, .people {
+		h3, h4 {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.forward-contact {
+	// text-align: center;
+	font-size: 13px;
+	.send-feedback {
+		// padding-left: 15px;
+		margin-top: 3em;
+	}
+	.send-feedback a {
+		margin-left: 5px;
+		padding: 0px 0 0 19px;
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+		background-image: url("../../images/icons/feedback-mail-32.png");
+	}
+}
+
+.primary-people, .secondary-people {
+	font-size: 13px;
+}
+
+.single-episode .primary-people {
+	@include grid-row($behavior: nest);
+}
+
+.single-episode .person {
+	@include grid-column(4);
+	text-align: center;
+	margin-bottom: 15px;
+	height: 80px;
+}
+.person img.avatar {
+	border: 2px solid #fff;
+	@include box-shadow(1px 1px 5px #666);
+}
+
+// mejs-container fix
+.mejs-container, .mejs-container * {
+	@include box-sizing(content-box);
+}
+
+/*
+======================================================
+	Showboard / Front Page
+======================================================
+*/
+
+.episode-albumart {
+	// text-align: center;
+	img {
+		margin: auto;
+		border: 5px solid #fff;
+	}
+	a img {@include box-shadow(1px 1px 5px #aaa);}
+	a:hover img {@include box-shadow(1px 1px 7px #666);}
+}
+
+
+#showboard .episode {
+	padding-top: 25px;
+	height: 260px;
+}
+#showboard {
+	.show-title {
+		font-size: 16px;
+		.long {font-size: 15px;}
+		.epic-long {font-size: 14px;}
+	}
+	.show-number {
+		font-size: 14px;
+	}
+	.show-date {
+		font-size: 13px;
+		color: #666;
+	}
+
+	.bottom {
+		&:before {
+			// hr break line
+			content: ' ';
+			width: 100%;
+			margin: auto;
+			background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+			height: 3px;
+			display: block;
+			margin: 15px auto 15px auto;
+			@include clearfix;
+		}
+	}
+
+}
+
+.baseline {
+	padding: .5em 2em 0 2em;
+	@include clearfix;
+}
+.all-shows {
+	float: left;
+}
+.more-episodes {
+	float: right;
+}
+
+/*
+======================================================
+	Footer and Subisiaries
+======================================================
+*/
+
+#footer-container {
+	margin-top: 2em;
+	color: #666;
+
+	a {
+		color: #ddd;
+		text-decoration: none;
+		&:visited {
+			color: #ccc;
+		}
+		&:hover {
+
+		}
+	}
+
+}
+
+#footer-container .footer-inner {
+	font-size: 13px;
+	text-align: center;
+	a {color: #777;}
+}
+
+.footer-area-container {
+	color: #bbb;
+	font-size: 14px;
+
+	h4 {
+		color: #ccc;
+		margin-bottom: .5em;
+	}
+
+	.widget {
+		margin-bottom: 1em;
+	}
+
+	.widget_text {
+
+	}
+
+	.widget_nav_menu {
+
+		ul {
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			column-count: 2;
+
+			margin-top: 0px;
+			padding: 0;
+			list-style: none;
+		}
+
+	}
+
+}
+
+@-webkit-keyframes nxhue {  
+   0% { -webkit-filter: hue-rotate(0deg); }  
+   50% { -webkit-filter: hue-rotate(180deg); }  
+   100% { -webkit-filter: hue-rotate(360deg); } 
+}
+ 
+.nx-end {
+
+	span {
+		opacity: .3;
+		display: block;
+		content: " ";
+		width: 64px;
+		height: 64px;
+		background-size: 64px 64px;
+		// background-image: url("../images/nx-logo-color.png");
+		background-image: url("../../images/nx-logo-grayscale.png");
+		margin: 0 auto 3em auto;
+	}
+
+	span.idle {
+		-webkit-animation: nxhue 15s alternate infinite;
+	}
+
+	-webkit-filter: blur(2px); 
+}
+
+
+/*
+======================================================
+	Archives and Categories
+======================================================
+*/
+.category-meta {font-size: 18px;}
+
+.episode.stand-alone {
+	
+	@include clearfix;
+	@include box;
+
+	.show-albumart {
+		padding: .5em 2em 1em 1em;
+		float: left;
+	}
+	.show-number {
+		color: #444;
+		font-size: 14px;
+	}
+	.show-date {
+		color: #666;
+		font-size: 14px;
+	}
+	.show-description {
+		margin-top: 1em;
+		font-size: 14px;
+	}
+
+}
+
+.archive {
+
+	.person {
+		@include clearfix;
+		@include box;
+	}
+
+	.person-avatar {
+		float: left;
+		padding: 0 2em 1em 1em;
+	}
+
+	.series-subscribe {
+		h4 {display: inline;}
+		li {
+			display: inline;
+			margin-left: 2em;
+			white-space:nowrap;
+		}
+		.series-subscriptions {
+			display: inline;
+		}
+	}
+
+}
+
+/*
+======================================================
+	Single person
+======================================================
+*/
+.single-person { 
+	.person .box {
+		@include box(.20);
+		@include clearfix;
+	}
+	.person-avatar {
+		float: left;
+		padding: 0 2em 1em 1em;
+	}
+	.person-links {
+		overflow: hidden;
+		list-style: none;
+		font-size: 14px;
+		padding: 0;
+		margin-top: 0;
+		li {
+			display: inline;
+			margin-right: 2em;
+		}
+	}
+	.person-content {
+		overflow: hidden;
+		line-height: 1.3em;
+	}
+	.episodes-with {
+		clear: both;
+		font-size: 18px;
+	}
+	.episode-list {
+		list-style: square;
+		font-size: 14px;
+		column-count:2;
+		-webkit-column-count:2;
+		-moz-column-count:2;
+		li {
+			margin-left: 20px;
+			margin-bottom: 5px;
+		}
+	}
+	.related:before {
+		content: ' ';
+		width: 100%;
+		margin: auto;
+		background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+		height: 3px;
+		display: block;
+		margin: 15px auto 15px auto;
+		@include clearfix;
+	}
+
+}
+
+/*
+======================================================
+	Villain
+======================================================
+*/
+
+#villain-container {
+	background-color: #000;
+	@include box-shadow(1px 1px 30px #000);
+	@include clearfix;
+}
+
+#villain-container.dictator,
+#villain-container.diarchy {
+	background-color: transparent;
+	@include box-shadow(none);
+}
+
+.dictator, .diarchy {
+	.villain {
+		margin: 30px auto;
+		position: relative;
+		border: 5px solid #fff;
+		@include box-shadow(1px 1px 10px #999);
+	}
+}
+
+.villain {
+	// width: 33.3333%;
+	margin-left: 0px;
+	margin-right: 0px;
+	// float: left;
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-ms-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	// height: 300px;
+	overflow: hidden;
+
+	.face {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.35) 100%);
+	}
+	.face:hover { background-image: none; }
+	.face:hover .mask {
+		background-color: rgba(0, 0, 0, 0.75);
+		text-shadow: 1px 1px 5px #ffffde;
+	}
+
+	.mask {
+		position: absolute;
+		z-index: 1;
+		bottom: 0;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.35);
+		padding: 10px 15px 15px;
+	}
+
+
+	.show-title {
+		color: #fff;
+		font-size: 28px;
+		.long {
+			font-size: 24px;
+		}
+		.epic-long {
+			font-size: 22px;
+		}
+	}
+	.show-number {
+		color: #eee;
+		text-shadow: none;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.show-date {
+		color: #eee;
+		text-shadow: none;
+		font-size: 14px;
+		font-weight: bold;	
+	}
+
+}
+
+
+/*
+======================================================
+	Loop Pagination
+======================================================
+*/
+.archive .loop-pagination {
+	@include box;
+}
+.loop-pagination {
+	margin-top: 3em;
+	text-align: center;
+
+	.page-numbers {
+		padding: .25em 1em .25em 1em;
+	}
+
+	.current {
+		background-color: #eeeeee;
+	}
+
+}
+
+
+
+/*
+======================================================
+	Not Found / 404
+======================================================
+*/
+.not-found {
+	@include clearfix;
+	@include box;
+	padding-bottom: 5em;
+}
+
+.error404 .content-section {
+	font-size: 20px;
+	text-align: center;
+}
+.not-found-notice {
+	font-weight: bold;
+}
+
+#kawaii-error {
+	
+	img {
+		width: 80%;	
+		display: block;
+		margin: 0 auto;
+		padding: 10px;
+		border: 5px solid #fff;
+		@include box-shadow(1px 1px 10px #999);
+	}	
+
+	
+
+}
+
+/*
+======================================================
+	Page - Shows
+======================================================
+*/
+
+.page-template-page-shows-php #content-container {
+	padding-top: 3em;
+}
+
+.page-template-page-shows-php .stand-alone {		
+		@include clearfix;
+		margin-bottom: 1.5em;
+		padding-bottom: 1.5em;
+		border-bottom: 1px solid #ccc;
+		&:last-child {
+			border-bottom: none;
+		}
+}
+
+.page-template-page-shows-php {
+		.show-albumart {
+			padding: 0em 2em 1em 1em;
+			float: left;
+		}
+		.show-number {
+			color: #444;
+			font-size: 14px;
+		}
+		.show-date {
+			color: #666;
+			font-size: 14px;
+		}
+		.series-description {
+			margin-top: 1em;
+			font-size: 16px;
+		}
+
+		.content-section {
+			overflow: hidden;
+		}
+
+		.show-series-name {
+			font-size: 32px;
+		}
+
+		.series-subscribe {
+			@include box;
+			margin: 0 0 1em 1em;
+			float: right;
+		}
+
+}
+
+.page.page-template-default .content-wrapper {
+	@include box;
+}
+.series-status {
+	margin-top: 0px;
+	font-size: 14px;
+	.show-title {
+		display: inline;
+		font-size: inherit;
+	}
+	overflow: hidden;
+}
+.show-block {
+	height: 200px;
+}
+
+
+/*
+======================================================
+	Noticeboard / Front page
+======================================================
+*/
+
+#noticeboard {
+	@include clearfix;
+	@include box(.35);
+
+	font-family: georgia, "times new roman", times, serif;
+
+	p {
+		font-size: 1em;
+		line-height: 1.25em;
+		margin: 0.625em;
+		text-align: left;
+	}
+
+	p:first-child {
+		font-size: 1.2em;
+	}
+
+	p + p {
+		text-indent: 1em;
+	}
+
+	p.signoff {
+		text-align: right;
+	}
+	span.signed {
+		float: right;
+		text-align: left;
+		text-indent: -9999px;
+		white-space: nowrap;
+		background-image: url('../../images/ryan-signature.png');
+		background-repeat: none;
+		width: 120px;
+		height: 84px;
+		background-size: 120px 84px;
+		display: inline-block;
+	}
+
+}
+
+/*
+======================================================
+	Extras
+======================================================
+*/
+
+.admin-statistics {
+	margin: 1em;
+	color: #ccc;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+// to handle form styles
+.wpcf7 {
+	input[type="text"], input[type="email"], select {
+		padding: 0.15em;
+		width: 100%;
+		font-size: 24px;
+		border: 1px solid #ccc;
+		&:focus {
+			border: 1px solid #aaa;
+		}
+	}
+	textarea {
+		border: 1px solid #ccc;
+		font-size: 22px;
+		padding: 0.15em;
+		width: 100%;
+	}
+	p {
+		font-size: 26px;
+	}
+}
+
+
+/*
+======================================================
+	Responsive styles (for design)
+======================================================
+*/
+
+@media (max-width: 768px) {
+
+
+	.page-template-page-shows-php {
+		.show-albumart {
+			padding: 0;
+		}
+		.show-albumart img {
+			margin: auto;
+			display: block;
+		}
+		.show-series-name {
+			text-align: center;
+		}
+		.show-albumart {
+			float: none;
+		}
+		.series-subscribe {
+			text-align: center;
+			float: none;
+			margin: 0;
+		}
+
+		.stand-alone {
+			@include grid-column($columns: 12, $center: false);
+		}
+
+	}
+
+	.archive {
+		.series-subscribe {
+			.series-subscriptions, li {
+				display: block;
+				margin-left: 0;
+			}
+			
+		}
+	}
+
+}
+
+/*
+======================================================
+	Responsive styles (for layout)
+======================================================
+*/
+
+@import "_layout.scss";
+
+
+@import "_print.scss";

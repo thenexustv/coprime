@@ -1,0 +1,21 @@
+@media print {
+
+  #universe {
+    display: none;
+  }
+
+  html, body {
+    background-color: #fff;
+  }
+
+  body:after {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    content: 'You cannot print podcasts';
+    font-size: 96px;
+    margin-top: 40%;
+    color: #000;
+  }
+
+}
