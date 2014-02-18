@@ -27,8 +27,13 @@ class Coprime {
 
 		// clears series list data from cache
 		add_action('save_post', array($this, 'update_series_list_data'), 1, 2);
+
+		add_action('wp_head', array($this, 'headers'));
 	}
 
+	public function headers() {
+		echo "<meta property=\"fb:admins\" content=\"309295532521393\" />\n";
+	}
 
 	public function enqueue_styles() {
 		wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700');

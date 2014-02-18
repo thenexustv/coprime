@@ -1,4 +1,4 @@
-/*! Coprime 1.0.15 2014-02-17 */
+/*! Coprime 1.0.16 <=% grunt.template.today("yyyy-mm-dd") %> */
 (function($) {
     (function($) {
         var re = /([^&=]+)=?([^&]*)/g;
