@@ -32,7 +32,7 @@ class Coprime {
 	}
 
 	public function headers() {
-		echo "<meta property=\"fb:admins\" content=\"309295532521393\" />\n";
+		echo "<meta property=\"fb:admins\" content=\"793140430\" />\n";
 	}
 
 	public function enqueue_styles() {
