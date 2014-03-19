@@ -4,6 +4,7 @@
 @import "settings";
 @import "foundation/components/global";
 @import "foundation/components/grid";
+@import "foundation/components/block-grid";
 @import "compass/css3/box-shadow";
 @import "compass/css3/box-sizing";
 
@@ -529,11 +530,6 @@ a {
 // 	height: 260px;
 // }
 #showboard {
-	.candy {
-		padding: 0 .5em 0 .5em;
-		position: relative;
-		height: 100%;
-	}
 	.show-title {
 		font-size: 20px;
 		// line-height: 1em;
@@ -553,21 +549,6 @@ a {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.overlay {
-		background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, #ffffff), color-stop(100%, #ffffff));
-		background: -webkit-linear-gradient(rgba(255,255,255,0),#ffffff,#ffffff);
-		background: -moz-linear-gradient(rgba(255,255,255,0),#ffffff,#ffffff);
-		background: -o-linear-gradient(rgba(255,255,255,0),#ffffff,#ffffff);
-		background: linear-gradient(rgba(255,255,255,0),#ffffff,#ffffff);
-		display: block;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		z-index: 100;
-		width: 100%;
-		height: 30px;
-		pointer-events: none;
-	}
 	.bottom {
 		&:before {
 			// hr break line
@@ -583,6 +564,13 @@ a {
 			margin: 15px auto 15px auto;
 			@include clearfix;
 		}
+	}
+
+	// used for padding in the new modern box style
+	.candy {
+		padding: 0 .5em 0 .5em;
+		position: relative;
+		height: 100%;
 	}
 
 }
