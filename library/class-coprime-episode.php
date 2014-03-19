@@ -181,8 +181,8 @@ class Coprime_Episode {
 	}
 
 	public function get_hero_albumart() {
-		$image = $this->episode->get_albumart();
-		$excerpt = strip_tags($this->get_episode_excerpt(20));
+		$image = $this->episode->get_albumart(array('size' => 'medium'));
+		$excerpt = esc_attr(strip_tags($this->get_episode_excerpt(20)));
 
 		if ( $image )
 			$template = "<a href=\"{$this->episode->get_permalink()}\"><img title=\"{$excerpt}\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
@@ -194,7 +194,7 @@ class Coprime_Episode {
 
 	public function get_showboard_albumart() {
 		$image = $this->episode->get_albumart(array('size' => 'medium'));
-		$excerpt = strip_tags($this->get_episode_excerpt(20));
+		$excerpt = esc_attr(strip_tags($this->get_episode_excerpt(20)));
 
 		if ( $image )
 			$template = "<a href=\"{$this->episode->get_permalink()}\"><img title=\"{$excerpt}\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";

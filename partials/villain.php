@@ -8,7 +8,7 @@ $cp_series = new Coprime_Series($series);
 ?>
 
 <article id="item-<?php the_ID(); ?>" <?php post_class('villain'); ?> style="background-image: url(<?php echo $cp_episode->get_villain_albumart(); ?>);">
-<a title="<?php echo strip_tags($cp_episode->get_episode_excerpt()); ?>" class="face" href="<?php echo $episode->get_permalink(); ?>">
+<a title="<?php echo esc_attr(strip_tags($cp_episode->get_episode_excerpt())); ?>" class="face" href="<?php echo $episode->get_permalink(); ?>">
 
 	<div class="mask">
 		<h2 class="show-title"><?php echo $cp_episode->get_villain_title(); ?></h2>

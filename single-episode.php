@@ -77,7 +77,7 @@
 								endif; ?>		
 
 							</aside>
-							<section class="content-section">						
+							<section class="content-section entry-content">						
 
 								<?php echo $episode->get_content(); ?> 
 
@@ -86,6 +86,8 @@
 
 							</section>
 							<footer class="content-footer">
+
+								<div class="ignore"><span class="vcard author"><span class="fn"></span></span></div>
 
 								<div class="navigation">
 									<span class="previous"><?php echo previous_post_link('%link', '&larr; Previous', true); ?></span>

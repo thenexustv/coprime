@@ -235,7 +235,7 @@ a {
 */
 
 #content-container {
-	padding: 1em 0 2em 0;
+	padding: .75em 0 2em 0;
 }
 
 #villain-container {
@@ -286,11 +286,11 @@ a {
 .show-series-description {
 	.long {
 		font-size: 14px;
-		line-height: 22px;
+		line-height: 28px;
 	}
 	.short {
 		font-size: 18px;
-		line-height: 28px;
+		line-height: 36px;
 	}
 }
 
@@ -540,9 +540,11 @@ a {
 
 	.show-title {
 		font-size: 20px;
-		// line-height: 1em;
+		line-height: 20px;
 		.long {font-size: 18px;}
-		.epic-long {font-size: 16px;}
+		.epic-long {
+			font-size: 16px;
+		}
 	}
 	.show-number {
 		font-size: 14px;
@@ -611,7 +613,7 @@ a {
 			color: #ccc;
 		}
 		&:hover {
-
+			color: #eeeeee;
 		}
 	}
 
@@ -620,7 +622,7 @@ a {
 #footer-container .footer-inner {
 	font-size: 13px;
 	text-align: center;
-	a {color: #777;}
+	a {color: #777; text-decoration: none;}
 }
 
 .footer-area-container {
@@ -1103,6 +1105,10 @@ a {
 	Extras
 ======================================================
 */
+
+.ignore {
+	display: none;
+}
 
 .admin-statistics {
 	margin: 1em;
