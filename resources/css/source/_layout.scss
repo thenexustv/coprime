@@ -67,10 +67,14 @@
 }
 
 #showboard .episode {
-	@include grid-column(12);
+	width: 80%;
+	margin: 1em auto;
+	max-height: 360px;
+	height: auto;
 	text-align: center;
 	@include transition-action(width, 0.25s);
 }
+
 
 .footer-area-container {
 	@include grid-row();
@@ -138,8 +142,10 @@
 
 	#showboard .episode {
 		@include grid-column(6);
+		min-height: 360px;
 		text-align: center;
 	}
+
 
 	.footer-area-container {
 		.widget_text {
@@ -172,7 +178,8 @@
 
 @media (min-width: 1024px) {
 	#showboard .episode {
-		@include grid-column(4, $push: 0);
+		@include grid-column(4);
+		min-height: 280px;
 		text-align: left;
 	}
 
@@ -194,4 +201,11 @@
 	}
 
 
+}
+
+@media only screen and (max-width : 360px) {
+	#showboard .episode {
+		max-height: 300px;
+		clear: both;
+	}
 }
