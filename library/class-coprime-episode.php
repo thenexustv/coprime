@@ -36,7 +36,7 @@ class Coprime_Episode {
 		$class = $this->get_title_length_class($title);		
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
-		return $this->wrap($template, 'episode-title');
+		return $this->wrap($template, array('episode-title', 'entry-title'));
 	}
 
 	public function get_formatted_title() {
@@ -45,7 +45,7 @@ class Coprime_Episode {
 		$class = $this->get_title_length_class($title);
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
-		return $this->wrap($template, array('episode-title', 'episode-formatted-title'));
+		return $this->wrap($template, array('episode-title', 'episode-formatted-title', 'entry-title'));
 	}
 
 	public function get_villain_title() {
@@ -111,7 +111,7 @@ class Coprime_Episode {
 
 		$template = apply_filters('get_posted_date_ago_template', $template, $values, $this);
 
-		return $this->wrap($template, 'episode-date');
+		return $this->wrap($template, array('episode-date', 'updated' , 'date'));
 	}
 
 	public function get_posted_date_ago() {
@@ -127,7 +127,7 @@ class Coprime_Episode {
 
 		$template = apply_filters('get_posted_date_ago_template', $template, $values, $this);
 
-		return $this->wrap($template, 'episode-date');
+		return $this->wrap($template, array('episode-date', 'updated', 'date'));
 	}
 
 	public function get_episode_description() {

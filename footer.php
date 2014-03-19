@@ -12,7 +12,7 @@
 		<div class="footer-inner">
 
 			<div class="endpoint">
-				<p class="source-org copyright">&copy; <?php echo date('Y'); ?> &blacksquare; <a href="<?php echo home_url(); ?>">The Nexus</a></p>
+				<p class="source-org copyright">&copy; <?php echo date('Y'); ?> &blacksquare; <span class="vcard author"><span class="fn"><a href="<?php echo home_url(); ?>">The Nexus</a></span></span></p>
 			</div>
 			<?php do_action('in_footer'); ?>
 
