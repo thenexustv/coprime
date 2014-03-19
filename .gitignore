@@ -37,6 +37,8 @@ ehthumbs.db
 Thumbs.db
 
 # Custom #
-.sass-cache/
-css/
+.sass-cache
+resources/css/build/
+resources/js/build/
 deploy
+node_modules

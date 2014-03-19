@@ -44,15 +44,17 @@ class Coprime_Series {
 		return $this->wrap($template, 'series-name');
 	}
 
-	public function get_series_subscriptions() {
+	public function get_series_subscriptions($episode = null) {
 		$name = $this->series->get_name();
 		$feed = $this->series->get_feed_permalink();
 
-		$template = "<a title=\"Subscribe via the feed just the {$name} episodes\" href=\"{$feed}\">{$name}</a>";
+		$is_fringe = ('tf' == $this->series->get_slug());
+
+		$template = "<a title=\"Subscribe via the feed of {$name} episodes\" href=\"{$feed}\">{$name}</a>";
 		$output = $this->wrap($template, 'regular', 'li');
 
-		if ( 'tf' != $this->series->get_slug() ) {
-			$template = "<a title=\"Subscribe via the feed to both the {$name} and associated fringe epsidoes\" href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
+		if ( !$is_fringe ) {
+			$template = "<a title=\"Subscribe via the feed of both the {$name} and associated Fringe epsidoes\" href=\"{$feed}?fringe\">{$name} &amp; The Fringe</a>";
 			$output = $output . $this->wrap($template, 'with-fringe', 'li');
 		}
 

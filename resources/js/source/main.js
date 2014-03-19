@@ -1,5 +1,38 @@
 (function ($) {
 
+	/*
+		jQuery query string parser.
+		https://gist.github.com/kares/956897
+	*/
+	(function($) {
+	    var re = /([^&=]+)=?([^&]*)/g;
+	    var decode = function(str) {
+	        return decodeURIComponent(str.replace(/\+/g, ' '));
+	    };
+	    $.parseParams = function(query) {
+	        var params = {}, e;
+	        if (query) {
+	            if (query.substr(0, 1) == '?') {
+	                query = query.substr(1);
+	            }
+
+	            while (e = re.exec(query)) {
+	                var k = decode(e[1]);
+	                var v = decode(e[2]);
+	                if (params[k] !== undefined) {
+	                    if (!$.isArray(params[k])) {
+	                        params[k] = [params[k]];
+	                    }
+	                    params[k].push(v);
+	                } else {
+	                    params[k] = v;
+	                }
+	            }
+	        }
+	        return params;
+	    };
+	})($);
+
 	function mejs_rails_fix() {
 		// find all the rails, likely to be only one
 		var rails = $(document).find('.mejs-time-rail');
@@ -113,7 +146,7 @@
 				time = 1;
 			}
 
-			since = (time == 1 ? periods[key][0] : periods[key][0]).replace('%s', time);
+			since = (time == 1 ? periods[key][0] : periods[key][1]).replace('%s', time);
 			return false; // jquery break
 
 		});
@@ -135,6 +168,46 @@
 
 	}
 
+	// http://stackoverflow.com/questions/1053902/how-to-convert-a-title-to-a-url-slug-in-jquery
+	function to_slug(text) {
+		return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+	}
+
+	function setup_contact_listener() {
+
+		var elements = $('.wpcf7');
+
+		elements.each(function(index, element){
+
+			var topic = $(element).find('.your-recipient');
+			var body = $(element).find('.your-message textarea');
+
+			if ( $.isEmptyObject(topic) || $.isEmptyObject(body) ) return false;
+
+			var query = window.location.search;
+			var obj = $.parseParams(query);
+			
+			if ( !obj.show || !obj.number ) return false;
+
+			var show = null;
+			topic.find('option').each(function(i, el){
+				el = $(el);
+				if ( to_slug(el.val()) == obj.show ) {
+					el.attr('selected', 'selected');
+					show = el;
+					return false;
+				}
+			});
+
+			var string = "With regards to " + show.val() + " Episode #" + obj.number + ",\n\n";
+			
+			body.val(string);
+
+
+		});
+
+	}
+
 	$(document).ready(function(){
 
 		setup_mejs_rails_fix();
@@ -142,6 +215,7 @@
 		setup_reveal_share();
 		setup_shownote_clicks();
 		setup_human_date_time();
+		setup_contact_listener();
 
 	});
 

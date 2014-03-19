@@ -2,8 +2,7 @@
 
 	$episode = Nexus_Episode::factory(); // whatever is in the loop
 	$people = $episode->get_people();
-
-	// var_dump($people);
+	$cp_episode = new Coprime_Episode($episode);
 
 	$primary = array_merge($people['hosts'], $people['primary']);
 	$secondary = $people['secondary'];
@@ -51,6 +50,8 @@
 			
 		</div>
 		<?php endif; ?>
+
+		<p class="forward-contact"><?php echo $cp_episode->get_contact_link(); ?></p>
 
 	</div>
 </div>
