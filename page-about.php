@@ -21,7 +21,7 @@
 						<?php do_action('before_in_content'); ?>
 
 						<header class="content-header">
-							<h1><span><?php the_title(); ?></span></h1>
+							<h1 class="entry-title"><span><?php the_title(); ?></span></h1>
 							<?php do_action('in_content_header'); ?>
 						</header>
 						<section class="content-section">

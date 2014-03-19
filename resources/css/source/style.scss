@@ -1010,14 +1010,19 @@ a {
 			height: 200px;
 			display: block;
 		}
+
 	}
 	.content-section {
 		p:first-child {
 			font-size: 1.1em;
+			font-weight: bold;
 		}
 		p {
 			font-size: .9em;
 		} 
+		h3 {
+			font-weight: normal;
+		}
 	}
 }
 
