@@ -971,9 +971,33 @@ a {
 
 }
 
-.page.page-template-default .content-wrapper {
+.page-template-page-about-php {
+	.content-header {
+		h1 span {display: none;}
+		h1 {
+			background-image: url("../../images/about-cover.jpg");
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			height: 200px;
+			display: block;
+		}
+	}
+	.content-section {
+		p:first-child {
+			font-size: 1.1em;
+		}
+		p {
+			font-size: .9em;
+		} 
+	}
+}
+
+.page-template-default article.page,
+.page-template-page-about-php article.page {
 	@include box;
 }
+
 .series-status {
 	margin-top: 0px;
 	font-size: 14px;

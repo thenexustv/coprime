@@ -31,6 +31,14 @@
 	@include grid-column(12);
 }
 
+.page-template-default article.page {
+	@include grid-column($columns: 10, $center: true);
+}
+
+.page-template-page-about-php article.page {
+	@include grid-column($columns: 8, $center: true);
+}
+
 .single-episode {
 
 	.sidebar-wrapper {
