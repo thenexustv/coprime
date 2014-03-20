@@ -4,6 +4,7 @@
 @import "settings";
 @import "foundation/components/global";
 @import "foundation/components/grid";
+@import "foundation/components/block-grid";
 @import "compass/css3/box-shadow";
 @import "compass/css3/box-sizing";
 
@@ -234,7 +235,7 @@ a {
 */
 
 #content-container {
-	padding: 1em 0 2em 0;
+	padding: .75em 0 2em 0;
 }
 
 #villain-container {
@@ -285,11 +286,11 @@ a {
 .show-series-description {
 	.long {
 		font-size: 14px;
-		line-height: 22px;
+		line-height: 28px;
 	}
 	.short {
 		font-size: 18px;
-		line-height: 28px;
+		line-height: 36px;
 	}
 }
 
@@ -502,23 +503,48 @@ a {
 .episode-albumart {
 	// text-align: center;
 	img {
+		width: 100%;
 		margin: auto;
 		border: 5px solid #fff;
 	}
 	a img {@include box-shadow(1px 1px 5px #aaa);}
 	a:hover img {@include box-shadow(1px 1px 7px #666);}
-}
 
+	margin-bottom: .5em;
+}
 
 #showboard .episode {
-	padding-top: 25px;
-	height: 260px;
+	margin-bottom: 1em;
+	height: 280px;
+	
 }
+#showboard .episode .wrapper {
+	overflow: hidden;
+	padding-bottom: 1em;
+	background-color: #fff;
+	@include box-shadow(1px 1px 10px #ccc);
+}
+#showboard .episode .wrapper:hover {
+	@include box-shadow(1px 1px 10px #aaa);
+}
+
+// #showboard .episode {
+// 	padding-top: 25px;
+// 	height: 260px;
+// }
 #showboard {
+
+	.episode-albumart img {
+		border: 0;
+	}
+
 	.show-title {
-		font-size: 16px;
-		.long {font-size: 15px;}
-		.epic-long {font-size: 14px;}
+		font-size: 20px;
+		line-height: 20px;
+		.long {font-size: 18px;}
+		.epic-long {
+			font-size: 16px;
+		}
 	}
 	.show-number {
 		font-size: 14px;
@@ -527,7 +553,12 @@ a {
 		font-size: 13px;
 		color: #666;
 	}
-
+	.show-description {
+		font-size: 16px;
+		line-height: 1.5em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 	.bottom {
 		&:before {
 			// hr break line
@@ -543,6 +574,13 @@ a {
 			margin: 15px auto 15px auto;
 			@include clearfix;
 		}
+	}
+
+	// used for padding in the new modern box style
+	.candy {
+		padding: 0 .5em 0 .5em;
+		position: relative;
+		height: 100%;
 	}
 
 }
@@ -575,7 +613,7 @@ a {
 			color: #ccc;
 		}
 		&:hover {
-
+			color: #eeeeee;
 		}
 	}
 
@@ -584,7 +622,7 @@ a {
 #footer-container .footer-inner {
 	font-size: 13px;
 	text-align: center;
-	a {color: #777;}
+	a {color: #777; text-decoration: none;}
 }
 
 .footer-area-container {
@@ -971,9 +1009,38 @@ a {
 
 }
 
-.page.page-template-default .content-wrapper {
+.page-template-page-about-php {
+	.content-header {
+		h1 span {display: none;}
+		h1 {
+			background-image: url("../../images/about-cover.jpg");
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			height: 200px;
+			display: block;
+		}
+
+	}
+	.content-section {
+		p:first-child {
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+		p {
+			font-size: .9em;
+		} 
+		h3 {
+			font-weight: normal;
+		}
+	}
+}
+
+.page-template-default article.page,
+.page-template-page-about-php article.page {
 	@include box;
 }
+
 .series-status {
 	margin-top: 0px;
 	font-size: 14px;
@@ -1038,6 +1105,10 @@ a {
 	Extras
 ======================================================
 */
+
+.ignore {
+	display: none;
+}
 
 .admin-statistics {
 	margin: 1em;

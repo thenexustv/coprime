@@ -36,7 +36,7 @@ class Coprime_Episode {
 		$class = $this->get_title_length_class($title);		
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
-		return $this->wrap($template, 'episode-title');
+		return $this->wrap($template, array('episode-title', 'entry-title'));
 	}
 
 	public function get_formatted_title() {
@@ -45,7 +45,7 @@ class Coprime_Episode {
 		$class = $this->get_title_length_class($title);
 
 		$template = "<a class=\"{$class}\" href=\"{$this->episode->get_permalink()}\">{$title}</a>";
-		return $this->wrap($template, array('episode-title', 'episode-formatted-title'));
+		return $this->wrap($template, array('episode-title', 'episode-formatted-title', 'entry-title'));
 	}
 
 	public function get_villain_title() {
@@ -77,7 +77,7 @@ class Coprime_Episode {
 		$fringe_id = $this->episode->get_fringe();
 		if (!$fringe_id) return '';
 		$fringe = Nexus_Episode::factory($fringe_id);
-		$template = " &blacksquare; <a href=\"{$fringe->get_permalink()}\">The Fringe #{$fringe->get_episode_number()}</a>";
+		$template = " &blacksquare; <a title=\"{$fringe->get_title()}\" href=\"{$fringe->get_permalink()}\">The Fringe #{$fringe->get_episode_number()}</a>";
 		return $this->wrap($template, 'with-fringe');
 	}
 
@@ -86,7 +86,7 @@ class Coprime_Episode {
 		if (!$parent_id) return '';
 		$parent = Nexus_Episode::factory($parent_id);
 		$slug = strtoupper($parent->get_series()->get_slug());
-		$template = " &blacksquare; <a href=\"{$parent->get_permalink()}\">{$slug} #{$parent->get_episode_number()}</a>";
+		$template = " &blacksquare; <a title=\"{$parent->get_title()}\" href=\"{$parent->get_permalink()}\">{$slug} #{$parent->get_episode_number()}</a>";
 		return $this->wrap($template, 'with-parent');
 	}
 
@@ -111,7 +111,7 @@ class Coprime_Episode {
 
 		$template = apply_filters('get_posted_date_ago_template', $template, $values, $this);
 
-		return $this->wrap($template, 'episode-date');
+		return $this->wrap($template, array('episode-date', 'updated' , 'date'));
 	}
 
 	public function get_posted_date_ago() {
@@ -127,12 +127,29 @@ class Coprime_Episode {
 
 		$template = apply_filters('get_posted_date_ago_template', $template, $values, $this);
 
-		return $this->wrap($template, 'episode-date');
+		return $this->wrap($template, array('episode-date', 'updated', 'date'));
 	}
 
 	public function get_episode_description() {
-		$description = apply_filters('get_episode_description', $this->episode->get_excerpt());
+		$excerpt = $this->get_episode_excerpt();
+		$description = apply_filters('get_episode_description', $excerpt);
 		return $this->wrap($description, 'episode-description', 'div');
+	}
+
+	public function get_episode_excerpt($trim = false) {
+		$excerpt = $this->episode->get_excerpt();
+		if (  is_integer($trim) && $trim > 0 ) {
+			$excerpt = wp_trim_words($excerpt, $trim);
+		}
+		return $excerpt;
+	}
+
+	/*
+		This function exists to enforce compliance with hAtom and Google.
+	*/
+	public function get_episode_author() {
+		$author = get_the_author_meta('display_name', $this->episode->get_post()->post_author);
+		echo $author;
 	}
 
 	public function get_podcast_player($enclosure) {
@@ -172,10 +189,11 @@ class Coprime_Episode {
 	}
 
 	public function get_hero_albumart() {
-		$image = $this->episode->get_albumart();
+		$image = $this->episode->get_albumart(array('size' => 'medium'));
+		$excerpt = esc_attr(strip_tags($this->get_episode_excerpt(20)));
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img title=\"{$excerpt}\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
 			$template = "<div><!-- the hero is missing --></div>";
 		
@@ -183,12 +201,13 @@ class Coprime_Episode {
 	}
 
 	public function get_showboard_albumart() {
-		$image = $this->episode->get_albumart(array('size' => 'thumbnail'));
+		$image = $this->episode->get_albumart(array('size' => 'medium'));
+		$excerpt = esc_attr(strip_tags($this->get_episode_excerpt(20)));
 
 		if ( $image )
-			$template = "<a href=\"{$this->episode->get_permalink()}\"><img alt=\"The {$this->episode->get_series_name()} series\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
+			$template = "<a href=\"{$this->episode->get_permalink()}\"><img title=\"{$excerpt}\" src=\"{$image['url']}\" class=\"{$image['class']}\" /></a>";
 		else
-			$template = "<div><!-- --></div>";
+			$template = "<div><!-- showboard is missing --></div>";
 		
 		return $this->wrap($template, 'episode-albumart', 'div');
 	}
