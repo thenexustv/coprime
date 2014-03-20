@@ -60,7 +60,7 @@
 								</div>
 								
 								<?php if ( $episode->get_excerpt() != '' ): ?>
-				 				<div class="show-description">
+				 				<div class="show-description entry-summary">
 				 					<?php echo $cp_episode->get_episode_description(); ?>
 				 				</div>
 					 			<?php endif; ?>
@@ -86,8 +86,8 @@
 
 							</section>
 							<footer class="content-footer">
-
-								<div class="ignore"><span class="vcard author"><span class="fn"></span></span></div>
+								
+								<div class="ignore"><span class="vcard author"><span class="fn"><?php echo $cp_episode->get_episode_author(); ?></span></span></div>
 
 								<div class="navigation">
 									<span class="previous"><?php echo previous_post_link('%link', '&larr; Previous', true); ?></span>

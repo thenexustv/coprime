@@ -144,6 +144,14 @@ class Coprime_Episode {
 		return $excerpt;
 	}
 
+	/*
+		This function exists to enforce compliance with hAtom and Google.
+	*/
+	public function get_episode_author() {
+		$author = get_the_author_meta('display_name', $this->episode->get_post()->post_author);
+		echo $author;
+	}
+
 	public function get_podcast_player($enclosure) {
 
 		$enclosure = apply_filters('get_podcast_player_enclosure', $enclosure);
