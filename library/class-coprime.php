@@ -88,6 +88,21 @@ class Coprime {
 	public function add_body_classes($classes) {
 		$classes[] = 'coprime';
 		$classes[] = 'small-identity';
+
+		function _is_april() {
+			$now = time();
+			$begin = strtotime("2014-03-31 12:00:00");
+			$end = strtotime("2014-04-02 12:00:00");
+			if ( $now >= $begin && $now <= $end ) {
+				return true;
+			}
+			return false;
+		}
+
+		if ( _is_april() ) {
+			$classes[] = 'april-fools';
+		}
+
 		return $classes;
 	}
 

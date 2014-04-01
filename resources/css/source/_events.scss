@@ -1,0 +1,51 @@
+body.april-fools {
+
+	background-color: #F26522;
+
+	#header-container {
+		border-color: #F2560C;
+	}
+
+	.nexus-title a:before {
+		-webkit-filter: hue-rotate(90deg);
+		// -webkit-filter: invert(100%)
+		background-image: url("../../images/nx-logo-color.png");
+		-webkit-animation: nxhue 15s alternate infinite;
+		-webkit-transform: rotate(45deg);
+
+		-webkit-filter: invert(100%);
+	}
+
+	#galaxy {
+		background-color: #E6D6C1;
+	}
+
+	img {
+		-webkit-filter: sepia(100%);
+	}
+
+	#villain-container, #hero-container {
+		-webkit-filter: invert(100%);
+	}
+
+	#content-container {
+		margin-top: 1em;
+		-webkit-filter: blur(2px);
+		&:hover {
+			-webkit-filter: blur(0px);
+		}
+	}
+
+}
+
+@media (max-width: 1024px) {
+	body.april-fools {
+		#content-container {
+			-webkit-filter: blur(0px);
+		}
+	}
+}
+
+html {
+	background-color: transparent;
+}
