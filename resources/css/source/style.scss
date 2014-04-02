@@ -12,12 +12,8 @@
 
 * { @include box-sizing(border-box); }
 
-
-html {
-	background: #222;
-}
-
 body {
+	background: #222;
 	color: #222;
 }
 
@@ -620,6 +616,8 @@ a {
 			color: #eeeeee;
 		}
 	}
+
+	overflow: hidden;
 
 }
 
