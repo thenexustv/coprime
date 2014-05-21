@@ -91,15 +91,15 @@ module.exports = function(grunt) {
         rsync: {
             options: {
                 src: "./",
-                args: ["--verbose"],
+                args: ["--verbose", "-n"],
                 exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'config.rb', '.jshintrc'],
                 recursive: true,
                 syncDestIgnoreExcl: true
             },
             production: {
                 options: {
-                    dest: "thenexustv/wp-content/themes/coprime/",
-                    host: "u44645998@ifupdown.com"
+                    dest: "/srv/www/thenexus.tv/public_html/wp-content/themes/coprime/",
+                    host: "ryan@thenexus.tv"
                 }
             }
         }
