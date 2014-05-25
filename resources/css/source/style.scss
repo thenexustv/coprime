@@ -12,8 +12,12 @@
 
 * { @include box-sizing(border-box); }
 
+html {
+	background-color: #222;
+}
+
 body {
-	background: #222;
+	background-color: #222;
 	color: #222;
 }
 
@@ -856,6 +860,7 @@ a {
 		height: 100%;
 		z-index: 0;
 		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.35) 100%);
+		background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.35) 100%);
 	}
 	.face:hover { background-image: none; }
 	.face:hover .mask {
@@ -876,6 +881,7 @@ a {
 	.show-title {
 		color: #fff;
 		font-size: 28px;
+		font-family: 'Raleway', sans-serif;
 		.long {
 			font-size: 24px;
 		}
@@ -888,12 +894,14 @@ a {
 		text-shadow: none;
 		font-size: 16px;
 		font-weight: bold;
+		float: left;
 	}
 	.show-date {
 		color: #eee;
 		text-shadow: none;
-		font-size: 14px;
+		font-size: 15px;
 		font-weight: bold;	
+		float: right;
 	}
 
 }
