@@ -483,7 +483,7 @@ a {
 }
 
 .single-episode .person {
-	@include grid-column(4);
+	@include grid-column(8);
 	text-align: center;
 	margin-bottom: 15px;
 	height: 80px;
@@ -1182,7 +1182,7 @@ a {
 		}
 
 		.stand-alone {
-			@include grid-column($columns: 12, $center: false);
+			@include grid-column($columns: 24, $center: false);
 		}
 
 	}
