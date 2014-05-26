@@ -125,7 +125,7 @@ $total-columns: 24;
 // We use this to control the maximum number of block grid elements per row
 
 $block-grid-elements: 24;
-$block-grid-default-spacing: emCalc(20);
+$block-grid-default-spacing: emCalc(5);
 
 // Enables media queries for block-grid classes. Set to false if writing semantic HTML.
 

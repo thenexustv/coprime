@@ -1,11 +1,11 @@
 <!doctype html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?>>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+
 <title><?php wp_title(''); ?></title>
 
 <!--
+
       ___           ___           ___                    ___           ___           ___           ___           ___     
      /\  \         /\__\         /\  \                  /\__\         /\  \         |\__\         /\__\         /\  \    
      \:\  \       /:/  /        /::\  \                /::|  |       /::\  \        |:|  |       /:/  /        /::\  \   
@@ -17,7 +17,13 @@
    \/__/            /:/  /     \:\ \/__/                |::/  /     \:\ \/__/      |:|  |       \:\/:/  /     \:\/:/  /  
                    /:/  /       \:\__\                  /:/  /       \:\__\        |:|  |        \::/  /       \::/  /   
                    \/__/         \/__/                  \/__/         \/__/         \|__|         \/__/         \/__/    
+
+Constructed by Ryan Rampersad. Ping via @ryanmr on Twitter.
+
 -->
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
 
 <?php wp_head(); ?>
 

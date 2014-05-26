@@ -53,21 +53,25 @@
                     <div id="showboard">
 
                         <div class="top">
+                        <ul>
                         <?php
                             $topshelf_query = Coprime::get_instance()->get_showboard_primary_query($villain_episodes);
                             while ($topshelf_query->have_posts()): $topshelf_query->the_post();
                             get_template_part('partials/showboard');
                             endwhile;
                         ?>
+                        </ul>
                         </div>
 
                         <div class="bottom">
+                        <ul>
                         <?php
                             $bottom_query = Coprime::get_instance()->get_showboard_fringe_query();
                             while ($bottom_query->have_posts()): $bottom_query->the_post();
                             get_template_part('partials/showboard');
                             endwhile;
                         ?>
+                        </ul>
                         </div>
 
                         <div class="baseline">

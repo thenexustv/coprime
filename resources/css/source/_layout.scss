@@ -59,20 +59,30 @@
 		@include grid-column(12);
 	}
 
+	.primary-people ul {
+		@include block-grid(3);
+	}
+
 }
 
 #showboard .top,
 #showboard .bottom {
 	@include grid-row();
+	ul {
+		padding: 0;
+	}
+	li {
+		@include transition-action(width, 0.25s);
+	}
 }
 
 #showboard .episode {
-	width: 80%;
-	margin: 1em auto;
-	max-height: 360px;
+	width: 87%;
+	margin: 3em auto;
+	max-height: 470px;
+	max-width: 400px;
 	height: auto;
 	text-align: center;
-	@include transition-action(width, 0.25s);
 }
 
 
@@ -100,6 +110,7 @@
 	float: none;
 	height: 250px;
 }
+
 
 
 /*
@@ -138,14 +149,27 @@
 		.share, .subscribe {
 			@include grid-column(24);
 		}
+
+		.primary-people ul {
+			@include block-grid(2);
+		}
+
 	}
+
+	// #showboard .episode {
+	// 	@include grid-column(12);
+	// 	min-height: 360px;
+	// 	text-align: center;
+	// }
 
 	#showboard .episode {
-		@include grid-column(12);
-		min-height: 360px;
 		text-align: center;
+		margin: 1.5em auto;
 	}
 
+	#showboard .top ul, #showboard .bottom ul {
+		@include block-grid(2);
+	}
 
 	.footer-area-container {
 		.widget_text {
@@ -177,10 +201,19 @@
 }
 
 @media (min-width: 1024px) {
+	// #showboard .episode {
+	// 	@include grid-column(8);
+	// 	min-height: 280px;
+	// 	text-align: left;
+	// }
+
 	#showboard .episode {
-		@include grid-column(8);
-		min-height: 280px;
 		text-align: left;
+		margin: 1em auto;
+	}
+
+	#showboard .top ul, #showboard .bottom ul {
+		@include block-grid(3);
 	}
 
 	.dictator .villain {
@@ -200,12 +233,13 @@
 		@include grid-column(9, $push: 4, $collapse: true);
 	}
 
+	.single-episode {}
 
 }
 
 @media only screen and (max-width : 360px) {
-	#showboard .episode {
-		max-height: 300px;
-		clear: both;
-	}
+	// #showboard .episode {
+	// 	max-height: 300px;
+	// 	clear: both;
+	// }
 }

@@ -257,6 +257,11 @@ a {
 	line-height: 26px;
 }
 
+.single-episode .hero-album-art .episode-albumart {
+	margin: 0 auto;
+	max-width: 400px;
+}
+
 
 
 
@@ -479,18 +484,40 @@ a {
 }
 
 .single-episode .primary-people {
-	@include grid-row($behavior: nest);
+	// @include grid-row($behavior: nest);
 }
 
-.single-episode .person {
-	@include grid-column(8);
-	text-align: center;
-	margin-bottom: 15px;
-	height: 80px;
-}
-.person img.avatar {
-	border: 2px solid #fff;
-	@include box-shadow(1px 1px 5px #666);
+.single-episode .primary-people {
+
+	ul {
+		padding: 0;
+		list-style: none;
+	}
+
+	.person {
+		// margin-left: 5px;
+		// @include grid-column(12);
+		margin-bottom: 2em;
+	}
+
+	.avatar-image {
+		// float: left;
+		text-align: center;
+		// padding: 0 1em 0 0;
+	}
+
+	.avatar-image img {
+		max-height: 55px;
+		max-width: 55px;
+		border: 1px solid #fff;
+		@include box-shadow(1px 1px 5px #666);
+	}
+
+	.name {
+		text-align: center;
+	}
+
+
 }
 
 // mejs-container fix
@@ -505,14 +532,12 @@ a {
 */
 
 .episode-albumart {
-	// text-align: center;
 	img {
 		width: 100%;
 		margin: auto;
 		border: 5px solid #fff;
 	}
 	a img {@include box-shadow(1px 1px 5px #aaa);}
-	a:hover img {@include box-shadow(1px 1px 7px #666);}
 
 	margin-bottom: .5em;
 }
@@ -749,6 +774,12 @@ a {
 
 }
 
+.person img.avatar {
+	border: 2px solid #fff;
+	@include box-shadow(1px 1px 5px #666);
+}
+
+
 /*
 ======================================================
 	Single person
@@ -880,7 +911,7 @@ a {
 
 	.show-title {
 		color: #fff;
-		font-size: 28px;
+		font-size: 30px;
 		font-family: 'Raleway', sans-serif;
 		.long {
 			font-size: 24px;

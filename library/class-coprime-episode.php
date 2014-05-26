@@ -24,8 +24,8 @@ class Coprime_Episode {
 		$class = 'regular';
 
 		$length = strlen($title);
-		if ( $length > 66 ) {$class = 'long';}
-		else if ($length > 33) {$class = 'epic-long';}
+		if ( $length > 66 ) {$class = 'epic-long';}
+		else if ($length > 33) {$class = 'long';}
 
 		return $class;
 	}
@@ -53,11 +53,11 @@ class Coprime_Episode {
 		$class = 'regular';
 
 		$length = strlen($title);
-		if ( $length > 30 ) {$class = 'long';}
-		else if ($length > 45) {$class = 'epic-long';}
+		if ($length > 45) {$class = 'epic-long';}
+		elseif ( $length > 30 ) {$class = 'long';}
 
 		$template = "{$title}";
-		return $this->wrap($template, 'episode-title');
+		return $this->wrap($template, array('episode-title', $class));
 	}
 
 	public function get_single_title() {

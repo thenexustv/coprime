@@ -15,22 +15,26 @@
 		<?php if ( count($primary) > 0 ): ?>
 		<h4>In This Episode</h4>
 		<div class="primary-people">
-			
+			<ul>
+
 			<?php
 				foreach ($primary as $person_id):
 				$person = Nexus_Person::factory($person_id);
 				$cp_person = new Coprime_Person($person);
 			?>
-			<div class="person">
-				
-				<?php
-					echo $cp_person->get_avatar(50);
-					echo $cp_person->get_formatted_name();
-				?>
-				
-			</div>
-			<?php endforeach; ?>
 			
+			<li>
+				<div class="person">
+					<?php
+						echo $cp_person->get_avatar(150);
+						echo $cp_person->get_formatted_name();
+					?>
+				</div>
+			</li>
+
+			<?php endforeach; ?>
+
+			</ul>
 		</div>
 		<?php endif; ?>
 
