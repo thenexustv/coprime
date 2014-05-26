@@ -182,20 +182,25 @@ a {
     -webkit-transform: rotate(360deg);
   }
 }
-// #site-logo.idle {
-//   .logo {
-//     -webkit-transform: scale(.9);
-//   }
-//   -webkit-animation-name:             logo-rotate; 
-//   -webkit-animation-duration:         30s; 
-//   -webkit-animation-iteration-count:  infinite;
-//   -webkit-animation-timing-function:  linear;
-// }
+keyframes logo-rotate {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to { 
+    -moz-transform: rotate(360deg);
+  }
+}
+
 .nexus-title.idle a:before {
 	-webkit-animation-name:             logo-rotate; 
 	-webkit-animation-duration:         30s; 
 	-webkit-animation-iteration-count:  infinite;
 	-webkit-animation-timing-function:  linear;	
+
+	animation-name:             logo-rotate; 
+	animation-duration:         30s; 
+	animation-iteration-count:  infinite;
+	animation-timing-function:  linear;	
 }
 
 #primary-menu {
@@ -280,8 +285,15 @@ a {
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
-.hero-meta .show-series-name {
+.hero-meta .show-series-name, .archive-title .series-name {
+	font-family: 'Raleway', sans-serif;
 	font-size: 2.2em;
+
+	a:hover {
+		text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+		text-decoration: none;
+	}
+
 }
 
 .hero-meta {
