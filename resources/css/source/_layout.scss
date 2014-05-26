@@ -59,6 +59,10 @@
 		@include grid-column(12);
 	}
 
+	.primary-people ul {
+		@include block-grid(3);
+	}
+
 }
 
 #showboard .top,
@@ -145,6 +149,11 @@
 		.share, .subscribe {
 			@include grid-column(24);
 		}
+
+		.primary-people ul {
+			@include block-grid(2);
+		}
+
 	}
 
 	// #showboard .episode {
@@ -224,6 +233,7 @@
 		@include grid-column(9, $push: 4, $collapse: true);
 	}
 
+	.single-episode {}
 
 }
 

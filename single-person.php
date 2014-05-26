@@ -26,7 +26,7 @@
 							<?php do_action('before_in_content'); ?>
 
 							<header class="content-header">
-								<div class="person-avatar"><?php echo $cp_person->get_avatar(120); ?></div>
+								<div class="person-avatar"><?php echo $cp_person->get_avatar(150); ?></div>
 								<h1 class="person-name"><?php echo $cp_person->get_formatted_name(); ?></h1>
 
 								<?php echo $cp_person->get_links(); ?>
@@ -60,7 +60,7 @@
 										<li><a href="<?php echo $episode->get_permalink(); ?>"><?php echo $episode->get_formatted_title(); ?></a></li>
 									<?php endwhile ?>
 									</ul>
-									<?php loop_pagination(); ?>
+									<?php loop_pagination(array('mid_size' => 3, 'end_size' => 2)); ?>
 									<?php endif; $wp_query = $_wp_query; wp_reset_query(); wp_reset_postdata(); ?>
 								</div>
 
