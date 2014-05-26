@@ -99,9 +99,9 @@ class Coprime {
 			return false;
 		}
 
-		if ( _is_april() ) {
-			$classes[] = 'april-fools';
-		}
+		// if ( _is_april() ) {
+		// 	$classes[] = 'april-fools';
+		// }
 
 		return $classes;
 	}
@@ -136,7 +136,7 @@ class Coprime {
 	    );
 
 	    $arguments = $this->exclude_fringe($arguments);
-	    $ago = date('y-m-d', strtotime('-7 days'));
+	    $ago = date('y-m-d', strtotime('-156 hours'));
 	    $now = date('y-m-d', strtotime('+1 day'));
 
 	    $fn = function($where = '') use ($ago, $now) {
@@ -240,9 +240,17 @@ class Coprime {
 	}
 
 	public function admin_statistics() {
+
+		// http://www.php.net/manual/en/function.memory-get-usage.php#96280
+		function convert($size) {
+			$unit=array('B','KiB','MiB','GiB','TiB','PiB');
+			return @round($size/pow(1024,($i=floor(log($size,1024)))),3).' '.$unit[$i];
+		}
+
 		$timer = timer_stop(0, 2);
 		$queries = get_num_queries();
-		$content = "{$timer} seconds &blacksquare; {$queries} queries";
+		$memory = convert(memory_get_usage(true));
+		$content = "{$timer} seconds &blacksquare; {$queries} queries &blacksquare; {$memory}";
 		$template = "<div class=\"admin-statistics\">{$content}</div>";
 		echo $template;
 	}
