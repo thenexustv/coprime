@@ -257,6 +257,11 @@ a {
 	line-height: 26px;
 }
 
+.single-episode .hero-album-art .episode-albumart {
+	margin: 0 auto;
+	max-width: 400px;
+}
+
 
 
 
@@ -505,14 +510,12 @@ a {
 */
 
 .episode-albumart {
-	// text-align: center;
 	img {
 		width: 100%;
 		margin: auto;
 		border: 5px solid #fff;
 	}
 	a img {@include box-shadow(1px 1px 5px #aaa);}
-	a:hover img {@include box-shadow(1px 1px 7px #666);}
 
 	margin-bottom: .5em;
 }
@@ -880,7 +883,7 @@ a {
 
 	.show-title {
 		color: #fff;
-		font-size: 28px;
+		font-size: 30px;
 		font-family: 'Raleway', sans-serif;
 		.long {
 			font-size: 24px;
