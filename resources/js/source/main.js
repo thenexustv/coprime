@@ -210,7 +210,7 @@
 
 	$(document).ready(function(){
 
-		setup_mejs_rails_fix();
+		// setup_mejs_rails_fix();
 		setup_idle_nexus();
 		setup_reveal_share();
 		setup_shownote_clicks();

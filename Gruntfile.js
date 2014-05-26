@@ -98,8 +98,8 @@ module.exports = function(grunt) {
             },
             production: {
                 options: {
-                    dest: "thenexustv/wp-content/themes/coprime/",
-                    host: "u44645998@ifupdown.com"
+                    dest: "/srv/www/thenexus.tv/public_html/wp-content/themes/coprime/",
+                    host: "ryan@thenexus.tv"
                 }
             }
         }

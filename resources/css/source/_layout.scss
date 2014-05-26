@@ -9,12 +9,12 @@
 }
 
 .identity {
-	@include grid-column($columns: 12);
+	@include grid-column($columns: 24);
 	text-align: center;
 }
 
 #primary-menu {
-	@include grid-column(12);
+	@include grid-column(24);
 	text-align: center;
 }
 
@@ -28,15 +28,15 @@
 }
 
 .single-episode .episode {
-	@include grid-column(12);
+	@include grid-column(24);
 }
 
 .page-template-default article.page {
-	@include grid-column($columns: 10, $center: true);
+	@include grid-column($columns: 20, $center: true);
 }
 
 .page-template-page-about-php article.page {
-	@include grid-column($columns: 8, $center: true);
+	@include grid-column($columns: 16, $center: true);
 }
 
 .single-episode {
@@ -49,14 +49,18 @@
 	.episode,
 	.hero-meta,
 	.hero-album-art {
-		@include grid-column(12);
+		@include grid-column(24);
 	}
 
 	.people {
-		@include grid-column(12);
+		@include grid-column(24);
 	}
 	.share, .subscribe {
-		@include grid-column(6);
+		@include grid-column(12);
+	}
+
+	.primary-people ul {
+		@include block-grid(3);
 	}
 
 }
@@ -64,15 +68,21 @@
 #showboard .top,
 #showboard .bottom {
 	@include grid-row();
+	ul {
+		padding: 0;
+	}
+	li {
+		@include transition-action(width, 0.25s);
+	}
 }
 
 #showboard .episode {
-	width: 80%;
-	margin: 1em auto;
-	max-height: 360px;
+	width: 87%;
+	margin: 3em auto;
+	max-height: 470px;
+	max-width: 400px;
 	height: auto;
 	text-align: center;
-	@include transition-action(width, 0.25s);
 }
 
 
@@ -80,7 +90,7 @@
 	@include grid-row();
 
 	.widget_text, .widget_nav_menu  {
-		@include grid-column(12);
+		@include grid-column(24);
 	}
 }
 
@@ -102,6 +112,7 @@
 }
 
 
+
 /*
 ======================================================
 	(Regular) 768px+ layout
@@ -110,12 +121,12 @@
 @media #{$small} {
 
 	.identity {
-		@include grid-column($columns: 5, $center: false);
+		@include grid-column($columns: 10, $center: false);
 		text-align: left;
 	}
 
 	#primary-menu {
-		@include grid-column(7);
+		@include grid-column(14);
 		text-align: right;
 	}
 
@@ -130,30 +141,43 @@
 
 	.single-episode {
 
-		.episode {@include grid-column(8);}
-		.sidebar {@include grid-column(4);}
-		.hero-meta {@include grid-column(7);}
-		.hero-album-art {@include grid-column(5);}
+		.episode {@include grid-column(16);}
+		.sidebar {@include grid-column(8);}
+		.hero-meta {@include grid-column(14);}
+		.hero-album-art {@include grid-column(10);}
 
 		.share, .subscribe {
-			@include grid-column(12);
+			@include grid-column(24);
 		}
+
+		.primary-people ul {
+			@include block-grid(2);
+		}
+
 	}
+
+	// #showboard .episode {
+	// 	@include grid-column(12);
+	// 	min-height: 360px;
+	// 	text-align: center;
+	// }
 
 	#showboard .episode {
-		@include grid-column(6);
-		min-height: 360px;
 		text-align: center;
+		margin: 1.5em auto;
 	}
 
+	#showboard .top ul, #showboard .bottom ul {
+		@include block-grid(2);
+	}
 
 	.footer-area-container {
 		.widget_text {
-			@include grid-column(8);
+			@include grid-column(16);
 		}
 
 		.widget_nav_menu {
-			@include grid-column(4);
+			@include grid-column(8);
 		}
 	}
 
@@ -177,10 +201,19 @@
 }
 
 @media (min-width: 1024px) {
+	// #showboard .episode {
+	// 	@include grid-column(8);
+	// 	min-height: 280px;
+	// 	text-align: left;
+	// }
+
 	#showboard .episode {
-		@include grid-column(4);
-		min-height: 280px;
 		text-align: left;
+		margin: 1em auto;
+	}
+
+	#showboard .top ul, #showboard .bottom ul {
+		@include block-grid(3);
 	}
 
 	.dictator .villain {
@@ -190,22 +223,23 @@
 	}
 
 	.diarchy .villain {
-		@include grid-column(5);
+		@include grid-column(10);
 		height: 320px;
 	}
 	.diarchy .villain:first-child {
-		@include grid-column(5, $push: 1);
+		@include grid-column(9, $push: 2);
 	}
 	.diarchy .villain:last-child {
-		@include grid-column(5, $push: 1, $collapse: true);
+		@include grid-column(9, $push: 4, $collapse: true);
 	}
 
+	.single-episode {}
 
 }
 
 @media only screen and (max-width : 360px) {
-	#showboard .episode {
-		max-height: 300px;
-		clear: both;
-	}
+	// #showboard .episode {
+	// 	max-height: 300px;
+	// 	clear: both;
+	// }
 }
