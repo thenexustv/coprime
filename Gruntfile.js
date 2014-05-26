@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         rsync: {
             options: {
                 src: "./",
-                args: ["--verbose", "-n"],
+                args: ["--verbose"],
                 exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'config.rb', '.jshintrc'],
                 recursive: true,
                 syncDestIgnoreExcl: true
