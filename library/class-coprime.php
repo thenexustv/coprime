@@ -164,7 +164,7 @@ class Coprime {
 
 	    return array('mode' => $mode, 'query' => $query);
 	}
-	
+
 	public function get_showboard_primary_query($post_ids = array()) {
 		$arguments = array(
 	        'post_type' => 'episode',
