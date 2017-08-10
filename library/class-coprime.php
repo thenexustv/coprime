@@ -136,7 +136,7 @@ class Coprime {
 	    );
 
 	    $arguments = $this->exclude_fringe($arguments);
-	    $ago = date('y-m-d', strtotime('-156 hours'));
+	    $ago = date('y-m-d', strtotime('-336 hours'));
 	    $now = date('y-m-d', strtotime('+1 day'));
 
 	    $fn = function($where = '') use ($ago, $now) {
