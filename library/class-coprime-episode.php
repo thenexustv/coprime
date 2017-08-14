@@ -163,7 +163,7 @@ class Coprime_Episode {
 
 	}
 
-	public function get_is_new($tolerance = 7) {
+	public function get_is_new($tolerance = 14) {
 		$new = $this->episode->is_new($tolerance);
 		$template = "New";
 		if ($new) return $this->wrap($template, 'episode-new', 'span');
